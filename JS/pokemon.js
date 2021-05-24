@@ -131,6 +131,8 @@ function VerPokemon(){
     poke = document.getElementById("buscador").value;
     let buscado = pokedex.filter(pokedex => pokedex.name.english == poke);
 
+    boton.setAttribute('marcador', buscado[0].id);
+
     let insertar1a = document.getElementById("ID");
       insertar1a.innerHTML = `<p>ID: #${buscado[0].id}</p>`;
 
@@ -141,18 +143,15 @@ function VerPokemon(){
       insertar1c.setAttribute('src', `./pokemon.json-master/images/${buscado[0].id}.png`);
       document.getElementById('img').style.width = '300px';
 
-    boton.setAttribute('marcador', buscado[0].id);
-
     let insertar2a = buscado.map(function(bar){
       return '<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'
     });
       document.getElementById("caracteristicas").innerHTML = insertar2a;
-      document.getElementById("caracteristicas").style.listStyle = "none";
+      document.getElementById("caracteristicas").classList.add('listNotStyle');
 
     document.getElementById('fondo').style.backgroundImage = `url(./Multimedia/Img/fondo-${buscado[0].type[0]}.png)`;
     
     let agregar = document.getElementById("agregar")
-    agregar.appendChild(boton);    
 };
 
 function anyadirPoke(evento) {
@@ -162,11 +161,5 @@ function anyadirPoke(evento) {
   let comparador = comparativo.map(function(bar){
     return '<ul>'+'<li>'+bar.name.english+'</li>'+'<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'+'</ul>'
   });
-
-  
-
   document.getElementById("comparador").innerHTML = comparador;
-  console.log(comparativo);
 };
-
-// const comparador = document.getElementById("comparador");

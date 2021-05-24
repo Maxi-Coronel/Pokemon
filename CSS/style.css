@@ -21,6 +21,9 @@ ul{
     list-style: none;
 }
 /* MAIN */
+.listNotStyle{
+  list-style: none;
+}
 .cambio{
   color: whitesmoke;
   background: url("../Multimedia/Img/fondo-Psychic.png") no-repeat center center fixed;
@@ -28,7 +31,6 @@ ul{
   font-size: 45px;
   text-align: center;
 }
-
 .grid{
     display: grid;
         grid-template-columns: 35% 40% 25%;
@@ -52,6 +54,9 @@ ul{
   display: flex;
   color: blanchedalmond;
   background-color: rgb(0, 0, 0);
+}
+.esqDerecha{
+  float: right;
 }
 
 /* FOOTER */
