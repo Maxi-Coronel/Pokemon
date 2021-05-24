@@ -112,20 +112,33 @@ function VerPokemon(){
     let buscado = pokedex.filter(pokedex => pokedex.name.english == poke);
 
     let insertar1a = document.getElementById("ID");
-    insertar1a.innerHTML = `<p>ID: #${buscado[0].id}</p>`;
+      insertar1a.innerHTML = `<p>ID: #${buscado[0].id}</p>`;
 
     let insertar1b = document.getElementById("nombre");
-    insertar1b.innerHTML = `<p>${buscado[0].name.english}</p>`;
+      insertar1b.innerHTML = `<p>${buscado[0].name.english}</p>`;
 
     let insertar1c = document.getElementById("img");
-    insertar1c.setAttribute('src', buscado[0].img);
-    document.getElementById('img').style.width = '300px';
+      insertar1c.setAttribute('src', buscado[0].img);
+      document.getElementById('img').style.width = '300px';
+
+    let boton = document.getElementById("button");
+      boton.setAttribute('marcador', buscado[0].id);
+      boton.addEventListener('click', anyadirPoke);
 
     let insertar2a = buscado.map(function(bar){
       return '<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'
     });
-    document.getElementById("caracteristicas").innerHTML = insertar2a;
-    document.getElementById("caracteristicas").style.listStyle = "none";
+      document.getElementById("caracteristicas").innerHTML = insertar2a;
+      document.getElementById("caracteristicas").style.listStyle = "none";
 
     document.getElementById('fondo').style.backgroundImage = `url(./Multimedia/Img/fondo-${buscado[0].type[0]}.png)`;
+    
+    let agregar = document.getElementById("agregar")
+    agregar.appendChild(boton);    
 };
+
+function anyadirPoke(evento) {
+  comparativo.push(evento.target.getAttribute('marcador'));
+  console.log(comparativo);
+};
+
