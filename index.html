@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemón</title>
+    <title>Pokemanía</title>
     <link rel="shortcut icon" href="./Multimedia/Img/icono.png" type="image/x-icon">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -19,40 +19,43 @@
     <nav>
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand">Pokedex</a>
+              <a href="./index.html" class="navbar-brand">Pokedex</a>
+              <a href="./html/comparador.html" class="navbar-brand">Comparador</a>
               <form class="d-flex">
                 <input id="buscador" class="form-control me-2" type="search" placeholder="Por Nombre" aria-label="Search">
                 <input id="click" class="btn btn-outline-success" type="button" value="Buscar">
-                </div>
               </form>
             </div>
           </nav>
     </nav>
-    <main class="flex">
-        <section id="fondo" class="one cambio">
-            <div id="agregar">
-                <article id="ID"><p>ID: #150</p></article>
-                <article id="nombre"><p>Mewtwo</p></article>
-                <button id="button" class="btn btn-primary" marcador="150">+</button>
-            </div>
-            <img id="img" class="img img-fluid"  src="./pokemon.json-master/images/150.png">
-        </section>
-        <section class="two">
-            <div id="caracteristicas">
-                <ul>
-                    <li>HP: 106</li>
-                    <li>Attack: 110</li>
-                    <li>Defense: 90</li>
-                    <li>Sp. Attack: 154</li>
-                    <li>Sp. Defense: 90</li>
-                    <li>Speed: 130</li>
-                </ul>
-            </div>
-        </section>
-        <aside class="three">
-            <div>
-            </div>
-        </aside>
+    <main>
+        <div class="grid">
+            <section id="fondo" class="one cambio">
+                <div id="agregar">
+                    <article id="ID"><p>ID: #150</p></article>
+                    <article id="nombre"><p>Mewtwo</p></article>
+                    <button id="button" class="btn btn-primary" marcador="150">+</button>
+                </div>
+                <img id="img" class="img img-fluid"  src="./pokemon.json-master/images/150.png">
+            </section>
+            <section class="two">
+                <div id="caracteristicas">
+                    <ul>
+                        <li>HP: 106</li>
+                        <li>Attack: 110</li>
+                        <li>Defense: 90</li>
+                        <li>Sp. Attack: 154</li>
+                        <li>Sp. Defense: 90</li>
+                        <li>Speed: 130</li>
+                    </ul>
+                </div>
+            </section>
+            <aside class="three">
+                <div>
+                </div>
+            </aside>
+        </div>
+        <div id="comparador" class="flex"></div>
     </main>
     <footer class="footer">
         <ul class="footer__ul">

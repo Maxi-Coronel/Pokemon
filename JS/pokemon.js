@@ -122,6 +122,11 @@ let poke = 0;
 let click = document.getElementById("click");
 click.addEventListener('click',VerPokemon);
 
+const boton = document.getElementById("button");
+boton.addEventListener('click', anyadirPoke);
+
+const buscado = 0;
+
 function VerPokemon(){
     poke = document.getElementById("buscador").value;
     let buscado = pokedex.filter(pokedex => pokedex.name.english == poke);
@@ -136,9 +141,7 @@ function VerPokemon(){
       insertar1c.setAttribute('src', `./pokemon.json-master/images/${buscado[0].id}.png`);
       document.getElementById('img').style.width = '300px';
 
-    let boton = document.getElementById("button");
-      boton.setAttribute('marcador', buscado[0].id);
-      boton.addEventListener('click', anyadirPoke);
+    boton.setAttribute('marcador', buscado[0].id);
 
     let insertar2a = buscado.map(function(bar){
       return '<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'
@@ -153,6 +156,17 @@ function VerPokemon(){
 };
 
 function anyadirPoke(evento) {
-  comparativo.push(evento.target.getAttribute('marcador'));
+  const nuevo = pokedex.filter(pokedex => pokedex.id == evento.target.getAttribute('marcador'));
+  comparativo.push(nuevo[0]);
+
+  let comparador = comparativo.map(function(bar){
+    return '<ul>'+'<li>'+bar.name.english+'</li>'+'<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'+'</ul>'
+  });
+
+  
+
+  document.getElementById("comparador").innerHTML = comparador;
   console.log(comparativo);
 };
+
+// const comparador = document.getElementById("comparador");
