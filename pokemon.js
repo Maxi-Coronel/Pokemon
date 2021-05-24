@@ -105,7 +105,6 @@ let comparativo =[];
 let poke = 0;
 
 let click = document.getElementById("click");
-
 click.addEventListener('click',VerPokemon);
 
 function VerPokemon(){
@@ -125,8 +124,8 @@ function VerPokemon(){
     let insertar2a = buscado.map(function(bar){
       return '<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'
     });
-    
     document.getElementById("caracteristicas").innerHTML = insertar2a;
+    document.getElementById("caracteristicas").style.listStyle = "none";
 
     document.getElementById('fondo').style.backgroundImage = `url(./Multimedia/Img/fondo-${buscado[0].type[0]}.png)`;
 };
