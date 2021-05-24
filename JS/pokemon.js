@@ -9,7 +9,7 @@ function respuestaBtn() {
 let btn2 = document.getElementById(`btn2`);
 
 btn2.onclick = () => {console.log(`2 respuesta`);} */
-let pokedex = [{id : 1,
+let pokedex = [{id : "001",
                 name: {
                   english: "Bulbasaur",
                   japanese: "フシギダネ",
@@ -24,9 +24,8 @@ let pokedex = [{id : 1,
                     SpAttack: 65,
                     SpDefense: 65,
                     Speed: 45
-                },
-                img: './pokemon.json-master/images/001.png'},
-                {id: 2,
+                }},
+                {id: "002",
                 name: {
                   english: "Ivysaur",
                   japanese: "フシギソウ",
@@ -41,9 +40,8 @@ let pokedex = [{id : 1,
                   SpAttack: 80,
                   SpDefensa: 80,
                   Speed: 60
-                },
-                img: './pokemon.json-master/images/002.png'},
-                {id: 3,
+                }},
+                {id: "003",
                 name:{
                   english: "Venusaur",
                   japanese: "フシギバナ",
@@ -58,9 +56,8 @@ let pokedex = [{id : 1,
                   SpAttack: 100,
                   SpDefense: 100,
                   Speed: 80
-                },
-                img: './pokemon.json-master/images/003.png'},
-                {id: 4,
+                }},
+                {id: "004",
                 name: {
                   english: "Charmander",
                   japanese: "ヒトカゲ",
@@ -77,9 +74,8 @@ let pokedex = [{id : 1,
                   SpAttack: 60,
                   SpDefense: 50,
                   Speed: 65
-                },
-                img: './pokemon.json-master/images/004.png'},
-                {id: 7,
+                }},
+                {id: "007",
                 name: {
                   english: "Squirtle",
                   japanese: "ゼニガメ",
@@ -96,8 +92,27 @@ let pokedex = [{id : 1,
                   SpAttack: 50,
                   SpDefense: 64,
                   Speed: 43
+                }},
+                {
+                  id: "150",
+                  name: {
+                    english: "Mewtwo",
+                    japanese: "ミュウツー",
+                    chinese: "超梦",
+                    french: "Mewtwo"
+                  },
+                  type: [
+                    "Psychic"
+                  ],
+                  base: {
+                    HP: 106,
+                    Attack: 110,
+                    Defense: 90,
+                    SpAttack: 154,
+                    SpDefense: 90,
+                    Speed: 130
+                  }
                 },
-                img: './pokemon.json-master/images/007.png'},
 ];
 
 let comparativo =[];
@@ -118,7 +133,7 @@ function VerPokemon(){
       insertar1b.innerHTML = `<p>${buscado[0].name.english}</p>`;
 
     let insertar1c = document.getElementById("img");
-      insertar1c.setAttribute('src', buscado[0].img);
+      insertar1c.setAttribute('src', `./pokemon.json-master/images/${buscado[0].id}.png`);
       document.getElementById('img').style.width = '300px';
 
     let boton = document.getElementById("button");
@@ -141,4 +156,3 @@ function anyadirPoke(evento) {
   comparativo.push(evento.target.getAttribute('marcador'));
   console.log(comparativo);
 };
-
