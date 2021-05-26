@@ -64,6 +64,25 @@ let pokedex = [{id : "001",
                   SpDefense: 50,
                   Speed: 65
                 }},
+                {
+                  id: "005",
+                  name: {
+                    english: "Charmeleon",
+                    japanese: "リザード",
+                    chinese: "火恐龙",
+                    french: "Reptincel"
+                  },
+                  type: [
+                    "Fire"
+                  ],
+                  base: {
+                    HP: 58,
+                    Attack: 64,
+                    Defense: 58,
+                    SpAttack: 80,
+                    SpDefense: 65,
+                    Speed: 80
+                  }},
                 {id: "007",
                 name: {
                   english: "Squirtle",
