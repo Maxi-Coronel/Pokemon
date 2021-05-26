@@ -1,14 +1,3 @@
-/* let btn = document.getElementById(`btn`);
-
-btn.addEventListener(`click`, respuestaBtn);
-
-function respuestaBtn() {
-    console.log(`respuesta`);
-};
-
-let btn2 = document.getElementById(`btn2`);
-
-btn2.onclick = () => {console.log(`2 respuesta`);} */
 let pokedex = [{id : "001",
                 name: {
                   english: "Bulbasaur",
@@ -144,14 +133,14 @@ function VerPokemon(){
       document.getElementById('img').style.width = '300px';
 
     let insertar2a = buscado.map(function(bar){
-      return '<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'
+      return '<ul>'+'<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'+'</ul>'
     });
       document.getElementById("caracteristicas").innerHTML = insertar2a;
       document.getElementById("caracteristicas").classList.add('listNotStyle');
 
     document.getElementById('fondo').style.backgroundImage = `url(./Multimedia/Img/fondo-${buscado[0].type[0]}.png)`;
     
-    let agregar = document.getElementById("agregar")
+    let agregar = document.getElementById("agregar");
 };
 
 function anyadirPoke(evento) {
@@ -159,7 +148,7 @@ function anyadirPoke(evento) {
   comparativo.push(nuevo[0]);
 
   let comparador = comparativo.map(function(bar){
-    return '<ul>'+'<li>'+bar.name.english+'</li>'+'<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'+'</ul>'
+    return '<ul>'+'<li>'+bar.name.english+'</li>'+'<li>'+'Tipo: '+bar.type+'</li>'+'<li>'+'HP: '+bar.base.HP+'</li>'+'<li>'+'Attack: '+bar.base.Attack+'</li>'+'<li>'+'Defense: '+bar.base.Defense+'</li>'+'<li>'+'Sp. Attack: '+bar.base.SpAttack+'</li>'+'<li>'+'Sp. Defense: '+bar.base.SpDefense+'</li>'+'<li>'+'Speed: '+bar.base.Speed+'</li>'+'</ul>'
   });
   document.getElementById("comparador").innerHTML = comparador;
 };
