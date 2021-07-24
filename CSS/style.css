@@ -57,6 +57,10 @@ ul{
 }
 .esqDerecha{
   float: right;
+  height: 40px;
+}
+.margin{
+  margin: 0 20px;
 }
 
 /* FOOTER */
@@ -84,94 +88,3 @@ ul{
   align-items: center;
   align-self: end;
 }
-
-
-/* .footer {
-    background: linear-gradient(to bottom, black, #74a5ba);
-    box-shadow: -1px -2px 5px 1px #505050;
-    padding: .7em .7em;
-    font-size: .7em;
-    margin: 0;
-    height: 300px; }
-    .footer .footer__ul {
-      display: flex;
-      justify-content: center;
-      margin: .7em 0;
-      grid-area: red_social; }
-      .footer .footer__ul li {
-        margin: 0 15px; }
-        .footer .footer__ul li img {
-          width: 3em; }
-    .footer .footer__p {
-      font-size: large;
-      text-align: center;
-      margin: .7em auto;
-      color: #8eee8e;
-      grid-area: titulo; }
-    .footer .footer__p--copy {
-      font-size: 12px;
-      color: white;
-      grid-area: copy;
-      width: 90%; }
-    .footer address {
-      width: 100%;
-      margin: 0 auto;
-      grid-area: address; }
-      .footer address ul {
-        display: flex;
-        flex-flow: column wrap;
-        text-align: center; }
-        .footer address ul li {
-          margin: 2% 0;
-          color: #8eee8e; }
-    .footer .footer__form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: .2em .3em;
-      margin: 0 auto;
-      width: 90%;
-      color: #007000;
-      grid-area: newsletter; }
-      .footer .footer__form label {
-        color: white;
-        text-align: center;
-        align-self: center;
-        min-width: 90px;
-        font-size: 1.5em;
-        padding: 10px 0; }
-      .footer .footer__form .form-control {
-        background: #51814b;
-        color: white;
-        width: 70%;
-        margin-right: 10px;
-        height: 3.7vw;
-        min-height: 30px; }
-      .footer .footer__form .form-control:focus {
-        box-shadow: 0 0 5px 0.25rem #5fba48;
-        color: white; }
-      .footer .footer__form .footer__form__button {
-        width: 7vw;
-        min-width: 30px;
-        height: 7vw;
-        min-height: 30px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        border-radius: 10px; }
-  
-  @media only screen and (min-width: 440px) {
-    .footer {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas: "titulo red_social" "address newsletter" "address copy"; }
-      .footer .footer__p {
-        font-size: 1.5em;
-        margin: .5em 0 0 0; }
-      .footer .footer__p--copy {
-        font-size: 12px; }
-      .footer .footer__form label {
-        margin: 0; }
-      .footer .footer__form .footer__form__button {
-        width: 3.7vw;
-        height: 3.7vw; } }
-   */
