@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    list-style: none;
 }
 
 a{
@@ -14,19 +14,57 @@ a{
 a:visited{
     color: rgb(205, 195, 50);
 }
+/* OPCIONAL */
+.Grass{
+  background-image: url(https://www.pokexperto.net/torneos/skin/1.png);
+}
+.Bug{
+  background-image: url(https://www.pokexperto.net/torneos/skin/9.png);
+}
+.Dragon{
+  background-image: url(https://www.pokexperto.net/torneos/skin/15.png);
+}
+.Electric{
+  background-image: url(https://www.pokexperto.net/torneos/skin/14.png);
+}
+.Fighting{
+  background-image: url(https://www.pokexperto.net/torneos/skin/5.png);
+}
+.Fire{
+  background-image: url(https://www.pokexperto.net/torneos/skin/3.png);
+}
+.Flying{
+  background-image: url(https://www.pokexperto.net/torneos/skin/16.png);
+}
+.Ground{
+  background-image: url(https://www.pokexperto.net/torneos/skin/11.png);
+}
+.Ice{
+  background-image: url(https://www.pokexperto.net/torneos/skin/12.png);
+}
+.Psychic{
+  background-image: url(https://www.pokexperto.net/torneos/skin/6.png);
+}
+.Rock{
+  background-image: url(https://www.pokexperto.net/torneos/skin/10.png);
+}
+.Steel{
+  background-image: url(https://www.pokexperto.net/torneos/skin/13.png);
+}
+.Water{
+  background-image: url(https://www.pokexperto.net/torneos/skin/2.png);
+}
+.Normal{
+  background-image: url(https://www.pokexperto.net/torneos/skin/4.png);
+}
+.Dark{
+  background-image: url(https://www.pokexperto.net/torneos/skin/8.png);
+}
 
-ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+
 /* MAIN */
-.listNotStyle{
-  list-style: none;
-}
 .cambio{
   color: whitesmoke;
-  background: url("../Multimedia/Img/fondo-Psychic.png") no-repeat center center fixed;
   background-size: cover;
   font-size: 45px;
   text-align: center;
@@ -59,22 +97,18 @@ ul{
   float: right;
   height: 40px;
 }
-.margin{
-  margin: 0 20px;
-  width: 200px;
+.padding{
+  padding:20px;
 }
 
 /* FOOTER */
 .footer {
-  display: grid;
-    grid-template-columns: 40% 40%;
   background: linear-gradient(to bottom, rgb(0, 0, 0), #74a5ba);
-  height: 300px;
 }
 .footer__ul{
   display: flex;
     justify-content: center;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .footer__ul img{
   margin: 10px;
@@ -88,4 +122,9 @@ ul{
   text-shadow: 1px 1px 5px #1100ff;
   align-items: center;
   align-self: end;
+}
+.riolu{
+  transform: scale(2, 1.5);
+  margin-left: 13%;
+  margin-bottom: 70px;
 }

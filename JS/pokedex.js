@@ -1,20 +1,45 @@
-let pokedex = [{id: 1,name: {english: "Bulbasaur",japanese: "フシギダネ",chinese: "妙蛙种子",french: "Bulbizarre"},type: ["Grass","Poison"],base: {HP: 45,Attack: 49,Defense: 49,SpAttack: 65,SpDefense: 65,Speed: 45}},
-  {id: 2,name: {english: "Ivysaur",japanese: "フシギソウ",chinese: "妙蛙草",
-      french: "Herbizarre"
-    },
-    type: [
-      "Grass",
-      "Poison"
-    ],
-    base: {
-      HP: 60,
-      Attack: 62,
-      Defense: 63,
-      SpAttack: 80,
-      SpDefense: 80,
-      Speed: 60
-    }
+let pokedex = [
+{
+  id: 1,
+  name: {
+    english: "Bulbasaur",
+    japanese: "フシギダネ",
+    chinese: "妙蛙种子",
+    french: "Bulbizarre"
   },
+  type: [
+    "Grass",
+    "Poison"
+  ],
+  base: {HP: 45,
+    Attack: 49,
+    Defense: 49,
+    SpAttack: 65,
+    SpDefense: 65,
+    Speed: 45
+  }
+},
+{
+  id: 2,
+  name: {
+    english: "Ivysaur",
+    japanese: "フシギソウ",
+    chinese: "妙蛙草",
+    french: "Herbizarre"
+  },
+  type: [
+    "Grass",
+    "Poison"
+  ],
+  base: {
+    HP: 60,
+    Attack: 62,
+    Defense: 63,
+    SpAttack: 80,
+    SpDefense: 80,
+    Speed: 60
+  }
+},
 {
   id: 3,
   name: {
