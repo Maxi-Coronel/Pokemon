@@ -52,7 +52,7 @@ function verPokemon(){
                                   </ul>`);
     $("#caracteristicas").prop('class','listNotStyle');
     $("#fondo").addClass(`Psychic`);
-    $(`.Psychic`).css(`background-image`, `url("../Multimedia/Img/fondo-Psychic.png")`);
+    $(`.Psychic`).css(`background-image`, `url("./Multimedia/Img/fondo-Psychic.png")`);
   }
 }
 
