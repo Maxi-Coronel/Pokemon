@@ -17,31 +17,39 @@ a:visited{
 /* OPCIONAL */
 .Grass{
   /* background-image: url("https://www.pokexperto.net/torneos/skin/1.png");   */
-  background-image: url("./Multimedia/fondo-Grass.png");
+  background-image: url("../Multimedia/Img/fondo-Grass.png");
 }
 .Bug{
-  background-image: url("https://www.pokexperto.net/torneos/skin/9.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/9.png"); */
+  background-image: url("../Multimedia/Img/fondo-Bug.png");
 }
 .Dragon{
-  background-image: url("https://www.pokexperto.net/torneos/skin/15.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/15.png"); */
+  background-image: url("../Multimedia/Img/fondo-BuDragong.png");
 }
 .Electric{
-  background-image: url("https://www.pokexperto.net/torneos/skin/14.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/14.png"); */
+  background-image: url("../Multimedia/Img/fondo-Electric.png");
 }
 .Fighting{
-  background-image: url("https://www.pokexperto.net/torneos/skin/5.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/5.png"); */
+  background-image: url("../Multimedia/Img/fondo-Fighting.png");
 }
 .Fire{
-  background-image: url("https://www.pokexperto.net/torneos/skin/3.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/3.png"); */
+  background-image: url("../Multimedia/Img/fondo-Fire.png");
 }
 .Flying{
-  background-image: url("https://www.pokexperto.net/torneos/skin/16.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/16.png"); */
+  background-image: url("../Multimedia/Img/fondo-Flying.png");
 }
 .Ground{
-  background-image: url("https://www.pokexperto.net/torneos/skin/11.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/11.png"); */
+  background-image: url("../Multimedia/Img/fondo-Ground.png");
 }
 .Ice{
-  background-image: url("https://www.pokexperto.net/torneos/skin/12.png");
+  /* background-image: url("https://www.pokexperto.net/torneos/skin/12.png"); */
+  background-image: url("../Multimedia/Img/fondo-Ice.png");
 }
 .Psychic{
   background-image: url(https://www.pokexperto.net/torneos/skin/6.png);
