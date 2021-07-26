@@ -52,22 +52,28 @@ a:visited{
   background-image: url("../Multimedia/Img/fondo-Ice.png");
 }
 .Psychic{
-  background-image: url(https://www.pokexperto.net/torneos/skin/6.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/6.png); */
+  background-image: url("../Multimedia/Img/fondo-Psychic.png");
 }
 .Rock{
-  background-image: url(https://www.pokexperto.net/torneos/skin/10.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/10.png); */
+  background-image: url("../Multimedia/Img/fondo-Rock.png");
 }
 .Steel{
-  background-image: url(https://www.pokexperto.net/torneos/skin/13.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/13.png); */
+  background-image: url("../Multimedia/Img/fondo-Steel.png");
 }
 .Water{
-  background-image: url(https://www.pokexperto.net/torneos/skin/2.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/2.png); */
+  background-image: url("../Multimedia/Img/fondo-Water.png");
 }
 .Normal{
-  background-image: url(https://www.pokexperto.net/torneos/skin/4.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/4.png); */
+  background-image: url("../Multimedia/Img/fondo-Normal.png");
 }
 .Dark{
-  background-image: url(https://www.pokexperto.net/torneos/skin/8.png);
+  /* background-image: url(https://www.pokexperto.net/torneos/skin/8.png); */
+  background-image: url("../Multimedia/Img/fondo-Dark.png");
 }
 
 
