@@ -16,31 +16,31 @@ a:visited{
 }
 /* OPCIONAL */
 .Grass{
-  background-image: url(https://www.pokexperto.net/torneos/skin/1.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/1.png");
 }
 .Bug{
-  background-image: url(https://www.pokexperto.net/torneos/skin/9.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/9.png");
 }
 .Dragon{
-  background-image: url(https://www.pokexperto.net/torneos/skin/15.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/15.png");
 }
 .Electric{
-  background-image: url(https://www.pokexperto.net/torneos/skin/14.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/14.png");
 }
 .Fighting{
-  background-image: url(https://www.pokexperto.net/torneos/skin/5.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/5.png");
 }
 .Fire{
-  background-image: url(https://www.pokexperto.net/torneos/skin/3.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/3.png");
 }
 .Flying{
-  background-image: url(https://www.pokexperto.net/torneos/skin/16.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/16.png");
 }
 .Ground{
-  background-image: url(https://www.pokexperto.net/torneos/skin/11.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/11.png");
 }
 .Ice{
-  background-image: url(https://www.pokexperto.net/torneos/skin/12.png);
+  background-image: url("https://www.pokexperto.net/torneos/skin/12.png");
 }
 .Psychic{
   background-image: url(https://www.pokexperto.net/torneos/skin/6.png);
