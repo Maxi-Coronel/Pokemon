@@ -34,7 +34,7 @@ function verPokemon(){
     $("#caracteristicas").prop('class','listNotStyle');
 
     $("#fondo").addClass(`${buscado[0].type[0]}`);
-    $(`.${buscado[0].type[0]}`).css(`background-image`, `url("../Multimedia/Img/fondo-${buscado[0].type[0]}.png")`);
+    $(`.${buscado[0].type[0]}`).css(`background-image`, `url("./Multimedia/Img/fondo-${buscado[0].type[0]}.png")`);
 
   }else {
 
