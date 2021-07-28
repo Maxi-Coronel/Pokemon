@@ -12,15 +12,19 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
-    <header><div>
-                <img src="./Multimedia/Img/portada2.jpg" class="d-block w-100" alt="...">
-            </div>
+    <header>
+        <button class="btn btn-primary absolute">+</button>
+        <div id="desaparece">
+            <img src="./Multimedia/Img/portada2.jpg" class="w-100" alt="...">
+        </div>
+        <div id="aparece" style="display: none;">
+            <img src="./Multimedia/Img/portada1.jpg" class="d-block w-100" alt="...">
+        </div>
     </header>
     <nav>
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
               <a href="./index.html" class="navbar-brand">Pokedex</a>
-              <a href="./html/comparador.html" class="navbar-brand">Comparador</a>
               <form class="d-flex">
                 <input id="buscador" class="form-control me-2" type="search" placeholder="Por ID" aria-label="Search">
                 <input id="click" class="btn btn-outline-success" type="submit" value="Buscar">
@@ -46,7 +50,9 @@
                 </div>
             </aside>
         </div>
-        <div id="comparador" class="flex"></div>
+        <div id="btn">
+            <div id="comparador" class="flex"></div>
+        </div>
     </main>
     <footer class="footer">
         <div>

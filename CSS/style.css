@@ -4,13 +4,16 @@
     list-style: none;
 }
 
+ol, ul{
+  padding-left: 0;
+}
+
 a{
     text-decoration: none;
     font-family: 'Flamenco', cursive;
     font-weight: 400;
     color: rgb(205, 195, 50);
 }
-
 a:visited{
     color: rgb(205, 195, 50);
 }
@@ -45,14 +48,26 @@ a:visited{
 .flex{
   display: flex;
   color: blanchedalmond;
+}
+#btn{
   background-color: rgb(0, 0, 0);
 }
 .esqDerecha{
   float: right;
   height: 40px;
 }
+.absolute{
+  position: absolute;
+  z-index: 1;
+}
 .padding{
   padding:20px;
+}
+.margin{
+  margin: 0 30px;
+}
+.pos{
+  position: absolute;
 }
 
 /* FOOTER */

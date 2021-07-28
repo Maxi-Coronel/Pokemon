@@ -8,7 +8,7 @@ function guardarPoke () {
 function verPokemon(){
   let pokeBuscado = sessionStorage.getItem('pokeBuscado');
 
-  if (pokeBuscado != null) {  
+  if (pokeBuscado != null) {
     let buscado = pokedex.filter(e => e.id == pokeBuscado);
 
     $(".button").attr('marcador', `${buscado[0].id}`);
@@ -77,11 +77,15 @@ function imprimirPoke() {
   let imprimir = JSON.parse(localStorage.getItem(`comparativo`));
   console.log(imprimir);
   if (imprimir != null) {
+    $(`#comparador`).prepend(
+    `<div><button class="btn btn-primary mostrar">+</button></div>`)
     imprimir.forEach(e => {
         $(`#comparador`).append(`<div class="margin">
-                                  <input type="button" class="borrar btn btn-danger esqDerecha" value="x" marcador="${e.id}">
+                                  <input type="button" class="borrar btn btn-danger esqDerecha" value="x"
+                                  marcador="${e.id}">
                                   <ul>
-                                    <li>ID = ${e.id}</li>
+                                    <li><img class="imgComp" src="./pokemon.json-master/images/00${e.id}.png" width="150px"></li>
+                                    <li>ID = #${e.id}</li>
                                     <li>Nombre = ${e.name.english}</li>
                                     <li>Tipo = ${e.type}</li>
                                     <li>HP = ${e.base.HP}</li>
@@ -93,8 +97,16 @@ function imprimirPoke() {
                                   </ul>
                                   </div>`);
     });
+    $(".mostrar").click(()=>{
+      $(".imgComp").toggle();
+    })
   }
 }
+
+$(".absolute").click(()=>{
+  $("#desaparece").toggle();
+  $("#aparece").toggle();
+})
 
 function borrarPoke(evento) {
   let borrar = JSON.parse(localStorage.getItem(`comparativo`));
