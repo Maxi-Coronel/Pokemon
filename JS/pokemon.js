@@ -75,16 +75,20 @@ function anyadirPoke(evento) {
 
 function imprimirPoke() {
   let imprimir = JSON.parse(localStorage.getItem(`comparativo`));
-  console.log(imprimir);
   if (imprimir != null) {
     $(`#comparador`).prepend(
     `<div><button class="btn btn-primary mostrar">+</button></div>`)
     imprimir.forEach(e => {
+      if (e.id < 10) {
+        e.id = `00${e.id}`
+      } else if (e.id < 100) {
+        e.id = `0${e.id}`
+      }
         $(`#comparador`).append(`<div class="margin">
                                   <input type="button" class="borrar btn btn-danger esqDerecha" value="x"
                                   marcador="${e.id}">
                                   <ul>
-                                    <li><img class="imgComp" src="./pokemon.json-master/images/00${e.id}.png" width="150px"></li>
+                                    <li><img class="imgComp" src="./pokemon.json-master/images/${e.id}.png" width="150px"></li>
                                     <li>ID = #${e.id}</li>
                                     <li>Nombre = ${e.name.english}</li>
                                     <li>Tipo = ${e.type}</li>
