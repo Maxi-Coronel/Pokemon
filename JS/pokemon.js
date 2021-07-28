@@ -107,17 +107,19 @@ function imprimirPoke() {
   }
 }
 
-$(".absolute").click(()=>{
-  $("#desaparece").toggle();
-  $("#aparece").toggle();
-})
-
 function borrarPoke(evento) {
   let borrar = JSON.parse(localStorage.getItem(`comparativo`));
   let actualizado = borrar.filter(e => e.id != evento.target.getAttribute('marcador'));
   localStorage.setItem(`comparativo`, JSON.stringify(actualizado));
   location.reload();
 }
+
+$(".absolute").click(()=>{
+  $("#desaparece").toggle();
+  $("#aparece").toggle();
+})
+
+
 
 verPokemon();
 imprimirPoke();
