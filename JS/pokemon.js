@@ -1,14 +1,18 @@
 let comparativo =[];
 
+
 function guardarPoke () {
   let poke = $(`#buscador`).val();
+  //========== GUARDAR EN SESIONSTORAGE ============
   sessionStorage.setItem('pokeBuscado', poke);  
 }
 
 function verPokemon(){
+  //========== TRAER DE SESIONSTORAGE ============
   let pokeBuscado = sessionStorage.getItem('pokeBuscado');
 
   if (pokeBuscado != null) {
+    //========== FILTRAR EL ID PARA ARMAR LA TARJETA ============
     let buscado = pokedex.filter(e => e.id == pokeBuscado);
 
     $(".button").attr('marcador', `${buscado[0].id}`);
@@ -38,6 +42,7 @@ function verPokemon(){
 
   }else {
 
+  //========== SI NO HAY SESIONSTORAGE ============
     $(".button").attr('marcador', `150`);
     $("#ID").html(`<p>ID: #150</p>`);
     $("#nombre").html(`<p>Mewtwo</p>`);
@@ -74,16 +79,18 @@ function anyadirPoke(evento) {
 };
 
 function imprimirPoke() {
+  //========== TRAER DE LOCALSTORAGE ============
   let imprimir = JSON.parse(localStorage.getItem(`comparativo`));
   if (imprimir != null) {
-    $(`#comparador`).prepend(
-    `<div><button class="btn btn-primary mostrar">+</button></div>`)
+    //========== BOTON PARA MOSTRAR IMG ============
+    $(`#comparador`).prepend(`<div><button class="btn btn-primary mostrar">+</button></div>`)
     imprimir.forEach(e => {
       if (e.id < 10) {
         e.id = `00${e.id}`
       } else if (e.id < 100) {
         e.id = `0${e.id}`
       }
+      //========== TARJETA DE COMPARADOR ============
         $(`#comparador`).append(`<div class="margin">
                                   <input type="button" class="borrar btn btn-danger esqDerecha" value="x"
                                   marcador="${e.id}">
@@ -108,18 +115,21 @@ function imprimirPoke() {
 }
 
 function borrarPoke(evento) {
+  //========== TRAER DE LOCALSTORAGE ============
   let borrar = JSON.parse(localStorage.getItem(`comparativo`));
+  //========== FILTRAR TODOS MENOS EL BORRADO ============
   let actualizado = borrar.filter(e => e.id != evento.target.getAttribute('marcador'));
+  //========== VOLVER A GUARDAR EN LOCALSTORAGE ============
   localStorage.setItem(`comparativo`, JSON.stringify(actualizado));
   location.reload();
 }
 
+
+  //========== CAMBIAR IMG DEL HEADER ============
 $(".absolute").click(()=>{
   $("#desaparece").toggle();
   $("#aparece").toggle();
 })
-
-
 
 verPokemon();
 imprimirPoke();
