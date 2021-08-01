@@ -1,6 +1,7 @@
 $.getJSON('./pokedex.json', function(respuesta, estado) {
   if (estado === "success") {
     const pokedex = respuesta;
+    
     let comparativo =[];
 
     function guardarPoke () {
@@ -44,6 +45,7 @@ $.getJSON('./pokedex.json', function(respuesta, estado) {
       if (pokeBuscado != null) {
         //========== FILTRAR EL ID PARA ARMAR LA TARJETA ============
         let buscado = pokedex.filter(e => e.name.english == pokeBuscado);
+        console.log(buscado);
 
         $(".button").attr('marcador', `${buscado[0].id}`);
 
