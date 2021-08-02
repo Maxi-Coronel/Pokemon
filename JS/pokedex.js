@@ -16564,15 +16564,3 @@ let pokedex = [
   }
 }
 ];
-
-/* const pokedex = [];
-
-$.getJSON('./pokedex.json').done(function(response) {
-
-  for (const e of response) {
-    pokedex.push(e);
-  };
-
-}).fail(function() {
-  console.log("Error");
-}); */
