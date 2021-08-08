@@ -22,29 +22,54 @@ a:visited{
 
 /* MAIN */
 .cambio{
+  background-color: rgb(36, 0, 121);
   color: whitesmoke;
-  background-size: cover;
   font-size: 45px;
   text-align: center;
 }
+#fondo{
+  border: 5px solid white;
+  border-radius: 50%;
+  margin: 0 18%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .grid{
     display: grid;
-        grid-template-columns: 35% 40% 25%;
+        grid-template-columns: 20% 60% 20%;
 }
 .one{
-    grid-column: 1;
+    grid-column: 2;
     border: 1px solid black;
 }
 .two{
-    grid-column: 2;
+    grid-column: 1;
     background-color: rgb(36, 0, 121);
     padding: 30px;
     font-size: larger;
     color: whitesmoke;
 }
+#fAnt{
+  border: 3px solid white;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .three{
     grid-column: 3;
     background-color: rgb(36, 0, 121);
+    padding: 30px;
+    font-size: larger;
+    color: whitesmoke;
+}
+#fSig{
+  border: 3px solid white;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #btn{
   background-color: rgb(0, 0, 0);
@@ -61,12 +86,12 @@ a:visited{
   padding:20px;
 }
 
-.margin{
+.card{
   border: 7px solid rgb(238, 255, 0);
   border-radius: 3px;
   background-color: rgb(170, 255, 255);
   width: auto;
-  padding: 0 5px;
+  padding: 9px 7px 0;
 }
 
 .flex{
@@ -82,8 +107,9 @@ a:visited{
   border: 3px solid gray;
   padding: 0 18px;
   background-image: url("../Multimedia/Img/fondo-prueba.png");
-  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* FOOTER */

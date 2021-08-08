@@ -107,6 +107,9 @@ $.getJSON('./pokedex.json', function(respuesta, estado) {
             e.id = `0${e.id}`
           }
           //========== TARJETA DE COMPARADOR ============
+          for (let i = 0; i < respuesta.types.length; i++) {
+            let type = respuesta.types[i].type.name               
+          
             $(`#comparador`).append(`<input type="button" class="borrar btn btn-danger esqDerecha" value="x"
                                       marcador="${e.id}">
                                       <div class="margin">
@@ -116,14 +119,14 @@ $.getJSON('./pokedex.json', function(respuesta, estado) {
                                       </ul>
                                       <ul>
                                         <li><img class="imgComp" src="./Multimedia/images/${e.id}.png" width="150px"></li>
-                                        <li>Tipo = ${e.type}</li>
+                                        <li>Tipo = ${type}</li>
                                         <li>Ataque = ${e.base.Attack}</li>
                                         <li>Defensa = ${e.base.Defense}</li>
                                         <li>Super ataque = ${e.base.SpAttack}</li>
                                         <li>Super defensa = ${e.base.SpDefense}</li>
                                         <li>Velocidad = ${e.base.Speed}</li>
                                       </ul>
-                                      </div>`);
+                                      </div>`);}
         });
         $(".mostrar").click(()=>{
           $(".imgComp").toggle();

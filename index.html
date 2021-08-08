@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemanía</title>
-    <link rel="shortcut icon" href="./Multimedia/Img/icono.png" type="image/x-icon">
+    <title>Document</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- CSS local -->
@@ -34,21 +33,31 @@
     </nav>
     <main>
         <div class="grid">
-            <section id="fondo" class="one cambio">
+            <section class="two">
+                <div class="anterior">
+                    <div id="fAnt">
+                        <a class="aAnt">
+                            <img id="ant" class="img img-fluid" alt="pokemon anterior">
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <section class="one cambio">
                 <div id="agregar">
                     <input type="button" class="button btn btn-primary esqDerecha" value="+">
-                    <article id="ID"></article>
-                    <article id="nombre"></article>
                 </div>
-                <img id="img" class="img img-fluid">
-            </section>
-            <section class="two">
+                <div id="fondo"><img id="img" class="img img-fluid" alt="pokemon buscado"></div>
                 <div id="caracteristicas"></div>
             </section>
-            <aside class="three">
-                <div>
+            <section class="three">
+                <div class="siguiente">
+                    <div id="fSig">
+                        <a class="aSig">
+                            <img id="sig" class="img img-fluid" alt="pokemon siguiente">
+                        </a>
+                    </div>
                 </div>
-            </aside>
+            </section>
         </div>
         <div id="btn">
             <div id="comparador" class="flex"></div>
@@ -57,10 +66,10 @@
     <footer class="footer">
         <div>
             <ul class="footer__ul">
-                <li><a href="#"><img src="./Multimedia/Img/iconos/logo-de-face.png" alt=""></a></li>
-                <li><a href="#"><img src="./Multimedia/Img/iconos/insta.png" alt=""></a></li>
-                <li><a href="#"><img src="./Multimedia/Img/iconos/twit.png" alt=""></a></li>
-                <li><a href="#"><img src="./Multimedia/Img/iconos/whatts.png" alt=""></a></li>
+                <li><a href="#"><img src="./Multimedia/Img/iconos/logo-de-face.png" alt="red social"></a></li>
+                <li><a href="#"><img src="./Multimedia/Img/iconos/insta.png" alt="red social"></a></li>
+                <li><a href="#"><img src="./Multimedia/Img/iconos/twit.png" alt="red social"></a></li>
+                <li><a href="#"><img src="./Multimedia/Img/iconos/whatts.png" alt="red social"></a></li>
             </ul>
             <p class="footer__p"><b>Pokemanía</b></p>
         </div>
@@ -92,19 +101,15 @@
                 </div>
             </form>
             <div>
-                <img class="riolu" src="./Multimedia/Img/riolu.png" alt="">
+                <img class="riolu" src="./Multimedia/Img/riolu.png" alt="riolu">
             </div>
         </div>
     </footer>
-    <!-- JavaScript Bundle with Popper -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- JavaScript jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <!-- pokedex -->
-    <script src="./JS/pokedex.js"></script>
     <!-- Autocompletar -->
     <script type="text/javascript" src="./JS/auto.js"></script>
-    <!-- JavaScript local -->
-    <script type="text/javascript" src="./JS/pokemon.js"></script>
-    </body>
+    <!-- JavaScript Local -->
+    <script src="./JS/api.js"></script>
+</body>
 </html>
