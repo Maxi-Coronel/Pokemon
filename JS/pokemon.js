@@ -23,7 +23,7 @@ $.getJSON('./pokedex.json', function(respuesta, estado) {
         const nuevo = pokedex.filter(e => e.id == evento.target.getAttribute('marcador'));
         comparativo.push(nuevo[0]);
         localStorage.setItem(`comparativo`, JSON.stringify(comparativo));
-      }  
+      }
       location.reload();
     }
 

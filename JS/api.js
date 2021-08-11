@@ -1,8 +1,21 @@
+//========== CAMBIAR IMG DEL HEADER ============
+$(".absolute").click(()=>{
+  $("#desaparece").toggle();
+  $("#aparece").toggle();
+})
+
 function guardarPoke () {
   let poke = $(`#buscador`).val();
   //========== GUARDAR EN SESIONSTORAGE ============
   sessionStorage.setItem('pokeBuscado', poke);
 }
+
+$(`#variantes`).change(function () { 
+  let poke = $('#variantes').val();
+  //========== GUARDAR EN SESIONSTORAGE ============
+  sessionStorage.setItem('pokeBuscado', poke);
+  location.reload()
+});
 
 function MaysPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -33,7 +46,12 @@ function antSig(id) {
       if (estado === "success") {
         $(".aAnt").attr('marcador', `${respuesta.id}`)
         $("#fAnt").css(`background-image`, `url("./Multimedia/Img/fondo-${respuesta.types[0].type.name}.png")`);
-        $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`][`front_default`]}`);
+        if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+          $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+        } else {
+          $("#ant").attr('src', `${respuesta.sprites.front_default}`);
+          $("#ant").attr('width', `500px`);
+        };
       }
     }
   );
@@ -42,16 +60,29 @@ function antSig(id) {
       if (estado === "success") {
         $(".aSig").attr('marcador', `${respuesta.id}`)
         $("#fSig").css(`background-image`, `url("./Multimedia/Img/fondo-${respuesta.types[0].type.name}.png")`);
-        $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`][`front_default`]}`);
+        if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+          $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+        } else {
+          $("#sig").attr('src', `${respuesta.sprites.front_default}`);
+          $("#sig").attr('width', `500px`);
+        };
       }
     }
   );
 }
 
-function buscaAtnSig(evento) {
-  let poke = evento.target.getAttribute('marcador');
+function buscaAnt() {
+  let poke = $(`.aAnt`).attr('marcador');
   //========== GUARDAR EN SESIONSTORAGE ============
   sessionStorage.setItem('pokeBuscado', poke);
+  location.reload();
+}
+
+function buscaSig() {
+  let poke = $(`.aSig`).attr('marcador');
+  //========== GUARDAR EN SESIONSTORAGE ============
+  sessionStorage.setItem('pokeBuscado', poke);
+  location.reload();
 }
 
 //========== VISTA ============
@@ -65,7 +96,13 @@ function verPokemon(){
         if (estado === "success") {
           let id = respuesta.id;
           let name = MaysPrimera(respuesta.name);
-          let img = respuesta.sprites.other[`official-artwork`][`front_default`];
+          let img;
+          if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+            img = respuesta.sprites.other[`official-artwork`][`front_default`];
+          } else {
+            img = respuesta.sprites.front_default;
+            $("#img").attr('width', `500px`);
+          };
           let type = respuesta.types;
           const base = new Base(
             respuesta.stats[0].base_stat,
@@ -78,11 +115,26 @@ function verPokemon(){
           let move = respuesta.moves;
 
           const pokemon = new InfoPoke(id, name, img, type, base, ability);
-          console.log(pokemon);
+          /* let spt = name.split(`-`)
+          console.log(spt[1]); */
 
           $(".button").attr('marcador', `${pokemon.id}`);
 
           $("#img").attr('src', `${pokemon.img}`);
+
+          let url = respuesta.species.url;
+          $.get(url,
+            function (respuesta, estado) {
+              if (estado === "success") {
+                for (let i = 0; i < respuesta.varieties.length; i++) {
+                  $("#variantes").append(
+                    `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
+                  );
+                }
+              }
+            }
+          )
+
           $("#caracteristicas").append(
             `<ul>
               <li>ID: ${pokemon.id}</li>
@@ -111,6 +163,18 @@ function verPokemon(){
         $("#ID").html(`<p>ID: #${respuesta.id}</p>`);
         $("#nombre").html(`<p>${MaysPrimera(respuesta.name)}</p>`);
         $("#img").attr('src', `${respuesta.sprites.other[`official-artwork`][`front_default`]}`);
+        let url = respuesta.species.url;
+        $.get(url,
+          function (respuesta, estado) {
+            if (estado === "success") {
+              for (let i = 0; i < respuesta.varieties.length; i++) {
+                $("#variantes").append(
+                  `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
+                );
+              }
+            }
+          }
+        )
         $("#caracteristicas").append(
           `<ul>
             <li>HP: ${respuesta.stats[0].base_stat}</li>
@@ -161,7 +225,7 @@ function anyadirPoke(evento) {
     miEquipo.push(nuevo);
     localStorage.setItem(`miEquipo`, JSON.stringify(miEquipo));
   }  
-  /* location.reload(); */
+  location.reload();
 }
 
 function imprimirPoke() {
@@ -169,7 +233,6 @@ function imprimirPoke() {
   let imprimir = JSON.parse(localStorage.getItem(`miEquipo`));
   if (imprimir != null) {
     //========== BOTON PARA MOSTRAR IMG ============
-    $(`#btn`).prepend(`<div><button class="btn btn-primary mostrar">+</button></div>`);
     
     imprimir.forEach(e => {
       if (e.id < 10) {
@@ -185,7 +248,11 @@ function imprimirPoke() {
       }else{
         type.a = e.type[0].type.name;
         type.b = e.type[1].type.name;
-      }          
+      }
+
+      if (condition) {
+        
+      }
       
         $(`#comparador`).append(`<input type="button" class="borrar btn btn-danger esqDerecha" value="x"
                                   marcador="${e.id}">
@@ -195,7 +262,7 @@ function imprimirPoke() {
                                     <li><strong><span>HP</span>${e.stat.HP}</strong></li>
                                   </ul>
                                   <ul>
-                                    <li><img class="imgComp" src="${e.img}" width="200px"></li>
+                                    <li class="${fondo}"><img class="imgComp" src="${e.img}" width="200px"></li>
                                     <li>Tipo: ${MaysPrimera(type.a)} ${MaysPrimera(type.b)}</li>
                                     <li>Ataque: ${e.stat.Attack}</li>
                                     <li>Defensa: ${e.stat.Defense}</li>
@@ -205,9 +272,6 @@ function imprimirPoke() {
                                   </ul>
                                   </div>`);
     });
-    $(".mostrar").click(()=>{
-      $(".imgComp").toggle();
-    })
   }
 }
 
@@ -257,5 +321,6 @@ verPokemon();
 imprimirPoke();
 $(`.button`).click(anyadirPoke);
 $(`.borrar`).click(borrarPoke);
-$(`.aAnt`).click(buscaAtnSig);
-$(`.aSig`).click(buscaAtnSig);
+$(`.aAnt`).click(buscaAnt);
+$(`.aSig`).click(buscaSig);
+
