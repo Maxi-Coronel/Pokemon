@@ -73,7 +73,6 @@ $.getJSON('./pokedex.json', function(respuesta, estado) {
         $(`.${buscado[0].type[0]}`).css(`background-image`, `url("./Multimedia/Img/fondo-${buscado[0].type[0]}.png")`);
 
       }else {
-
       //========== SI NO HAY SESIONSTORAGE ============
         $(".button").attr('marcador', `150`);
         $("#ID").html(`<p>ID: #150</p>`);

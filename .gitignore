@@ -1,0 +1,6 @@
+/node_modules
+/SCSS
+/.vscode
+/html
+package.json
+package-lock.json

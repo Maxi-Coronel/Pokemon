@@ -1,3 +1,11 @@
+//entidades/objetos-----------------------
+//variables-------------------------------
+//---arrays--------------------
+//---selectores----------------
+//funciones-------------------------------
+//eventos---------------------------------
+//logica----------------------------------
+
 //========== CAMBIAR IMG DEL HEADER ============
 $(".absolute").click(()=>{
   $("#desaparece").toggle();
@@ -31,6 +39,7 @@ function InfoPoke(id, name, img, type, stat, ability) {
   this.stat = stat;
   this.ability = ability;
 }
+
 function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
   this.HP = HP;
   this.Attack = Attack;
@@ -41,11 +50,19 @@ function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
 }
 
 function antSig(id) {
-  $.get(`https://pokeapi.co/api/v2/pokemon/${id-1}`,
+  let urlAnt;
+  let urlSig;
+  if (id == 1) {
+    urlAnt = `https://pokeapi.co/api/v2/pokemon/898`;
+  }else {
+    urlAnt = `https://pokeapi.co/api/v2/pokemon/${id-1}`;
+  }
+  $.get(urlAnt,
     function (respuesta, estado) {
       if (estado === "success") {
+        console.log(respuesta);
         $(".aAnt").attr('marcador', `${respuesta.id}`)
-        $("#fAnt").css(`background-image`, `url("./Multimedia/Img/fondo-${respuesta.types[0].type.name}.png")`);
+        $("#fAnt").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
         if (respuesta.sprites.other[`official-artwork`].front_default != null) {
           $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
         } else {
@@ -55,11 +72,16 @@ function antSig(id) {
       }
     }
   );
-  $.get(`https://pokeapi.co/api/v2/pokemon/${id+1}`,
+  if (id == 898) {
+    urlSig = `https://pokeapi.co/api/v2/pokemon/1`
+  } else {
+    urlSig = `https://pokeapi.co/api/v2/pokemon/${id+1}`
+  }
+  $.get(urlSig,
     function (respuesta, estado) {
       if (estado === "success") {
         $(".aSig").attr('marcador', `${respuesta.id}`)
-        $("#fSig").css(`background-image`, `url("./Multimedia/Img/fondo-${respuesta.types[0].type.name}.png")`);
+        $("#fSig").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
         if (respuesta.sprites.other[`official-artwork`].front_default != null) {
           $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
         } else {
@@ -115,8 +137,6 @@ function verPokemon(){
           let move = respuesta.moves;
 
           const pokemon = new InfoPoke(id, name, img, type, base, ability);
-          /* let spt = name.split(`-`)
-          console.log(spt[1]); */
 
           $(".button").attr('marcador', `${pokemon.id}`);
 
@@ -137,23 +157,65 @@ function verPokemon(){
 
           $("#caracteristicas").append(
             `<ul>
-              <li>ID: ${pokemon.id}</li>
-              <li>Nombre: ${pokemon.name}</li>
-              <li>HP: ${pokemon.stat.HP}</li>
-              <li>Attack: ${pokemon.stat.Attack}</li>
-              <li>Defense: ${pokemon.stat.Defense}</li>
-              <li>Sp. Attack: ${pokemon.stat.SpAttack}</li>
-              <li>Sp. Defense: ${pokemon.stat.SpDefense}</li>
-              <li>Speed: ${pokemon.stat.Speed}</li>
-            </ul>`);
-          $("#caracteristicas").prop('class','listNotStyle');
-          $("#fondo").css(`background-image`, `url("./Multimedia/Img/fondo-${pokemon.type[0].type.name}.png")`);
+              <li>${pokemon.name}</li>
+              <li>N°: ${pokemon.id}</li>
+            </ul>
+            <div>
+              <ul>
+                <li>HP: ${pokemon.stat.HP}</li>
+                <li>Attack: ${pokemon.stat.Attack}</li>
+                <li>Defense: ${pokemon.stat.Defense}</li>
+              </ul>
+              <ul>
+                <li>Sp. Attack: ${pokemon.stat.SpAttack}</li>
+                <li>Sp. Defense: ${pokemon.stat.SpDefense}</li>
+                <li>Speed: ${pokemon.stat.Speed}</li>
+              </ul>
+            </div>`);
+          $("#caracteristicas").prop('class','border-radius color');
+          $("#fondo").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${pokemon.type[0].type.name}.png")`);
           
           localStorage.setItem(`pokemon`, JSON.stringify(pokemon));
           antSig(pokemon.id);
+
+
+          $.get(respuesta.types[0].type.url,
+            function (respuesta, estado) {
+              if (estado === "success") {
+                console.log(`debilidad doble de ${type[0].type.name}`);
+                let daño = respuesta.damage_relations.double_damage_from
+                for (let i = 0; i < daño.length; i++) {
+                  if (type[1] != null) {
+                    if (daño[i].name != type[1].type.name) {
+                      console.log(daño[i].name);
+                    }
+                  }else{
+                    console.log(daño[i].name);
+                  }
+                }
+              }
+            }
+          )
+          if (respuesta.types[1] != null) {
+            $.get(respuesta.types[1].type.url,
+              function (respuesta, estado) {
+                if (estado === "success") {
+                  console.log(`debilidad doble de ${type[1].type.name}`);
+                  let daño = respuesta.damage_relations.double_damage_from
+                  for (let i = 0; i < daño.length; i++) {
+                    if (daño[i].name != type[0].type.name) {
+                      console.log(daño[i].name);
+                    }
+                  }
+                }
+              }
+            )
+          }
         }
       }
     )
+
+
   }else {
     //========== SI NO HAY SESIONSTORAGE ============
     $.get(`https://pokeapi.co/api/v2/pokemon/150`,
@@ -177,15 +239,23 @@ function verPokemon(){
         )
         $("#caracteristicas").append(
           `<ul>
-            <li>HP: ${respuesta.stats[0].base_stat}</li>
-            <li>Attack: ${respuesta.stats[1].base_stat}</li>
-            <li>Defense: ${respuesta.stats[2].base_stat}</li>
-            <li>Sp. Attack: ${respuesta.stats[3].base_stat}</li>
-            <li>Sp. Defense: ${respuesta.stats[4].base_stat}</li>
-            <li>Speed: ${respuesta.stats[5].base_stat}</li>
-          </ul>`);
+              <li>${MaysPrimera(respuesta.name)}</li>
+              <li>N°: ${respuesta.id}</li>
+            </ul>
+            <div>
+              <ul>
+                <li>HP: ${respuesta.stats[0].base_stat}</li>
+                <li>Attack: ${respuesta.stats[1].base_stat}</li>
+                <li>Defense: ${respuesta.stats[2].base_stat}</li>
+              </ul>
+              <ul>
+                <li>Sp. Attack: ${respuesta.stats[3].base_stat}</li>
+                <li>Sp. Defense: ${respuesta.stats[4].base_stat}</li>
+                <li>Speed: ${respuesta.stats[5].base_stat}</li>
+              </ul>
+            </div>`);
         $("#caracteristicas").prop('class','listNotStyle');
-        $("#fondo").css(`background-image`, `url("./Multimedia/Img/fondo-${respuesta.types[0].type.name}.png")`);
+        $("#fondo").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
         
         const base = new Base(
           respuesta.stats[0].base_stat,
@@ -244,33 +314,33 @@ function imprimirPoke() {
         type = new Object(); 
       if (e.type.length == 1) {
         type.a = e.type[0].type.name
-        type.b = "";
+        type.b = "#";
       }else{
         type.a = e.type[0].type.name;
         type.b = e.type[1].type.name;
       }
-
-      if (condition) {
-        
-      }
       
-        $(`#comparador`).append(`<input type="button" class="borrar btn btn-danger esqDerecha" value="x"
-                                  marcador="${e.id}">
-                                  <div class="card">
-                                  <ul class="flex between">
-                                    <li><strong>${e.name}</strong></li>
-                                    <li><strong><span>HP</span>${e.stat.HP}</strong></li>
-                                  </ul>
-                                  <ul>
-                                    <li class="${fondo}"><img class="imgComp" src="${e.img}" width="200px"></li>
-                                    <li>Tipo: ${MaysPrimera(type.a)} ${MaysPrimera(type.b)}</li>
-                                    <li>Ataque: ${e.stat.Attack}</li>
-                                    <li>Defensa: ${e.stat.Defense}</li>
-                                    <li>Super ataque: ${e.stat.SpAttack}</li>
-                                    <li>Super defensa: ${e.stat.SpDefense}</li>
-                                    <li>Velocidad: ${e.stat.Speed}</li>
-                                  </ul>
-                                  </div>`);
+      
+        $(`#comparador`).append(`
+          <div class="row">
+            <input type="button" class="borrar btn btn-danger esqDerecha" value="x" marcador="${e.id}">
+            <div class="card flex">
+              <ul class="flex between">
+                <li><strong>${e.name}</strong></li>
+                <li><strong><span>HP</span>${e.stat.HP}</strong></li>
+              </ul>
+              <ul>
+                <li><img class="imgComp" src="${e.img}" style='background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")' width="200px"></li>
+                <li>Tipo: <img src="./Multimedia/Img/Tipo/${type.a}.png" alt=""> <img src="./Multimedia/Img/Tipo/${type.b}.png" alt=""></li>
+                <li>Ataque: ${e.stat.Attack}</li>
+                <li>Defensa: ${e.stat.Defense}</li>
+                <li>Super ataque: ${e.stat.SpAttack}</li>
+                <li>Super defensa: ${e.stat.SpDefense}</li>
+                <li>Velocidad: ${e.stat.Speed}</li>
+              </ul>
+            </div>
+          </div>
+        `);
     });
   }
 }
@@ -285,37 +355,6 @@ function borrarPoke(evento) {
   location.reload();
 }
 
-          /* console.log(`el pokemon buscado es ${pokeBuscado}`);
-          for (let i = 0; i < respuesta.types.length; i++) {
-            let tipo = respuesta.types[i].type.name
-            console.log(`tipo${i+1} ${tipo}`);
-          }
-          for (let i = 0; i < respuesta.stats.length; i++) {
-            let bases = respuesta.stats[i]
-            console.log(`${bases.stat.name} ${bases.base_stat}`);
-          }
-          for (let i = 0; i < respuesta.abilities.length; i++) {
-            let bases = respuesta.abilities[i]
-            console.log(`habilidad ${i+1} ${bases.ability.name}`);
-          }
-          console.log();
-          for (let i = 0; i < respuesta[`moves`].length; i++) {
-            let bases = respuesta[`moves`][i]
-            let move = respuesta[`moves`][i].move.url                
-            $.get(`${move}`,
-              function (respuesta, estado) {
-                if (estado === "success") {
-                  console.log(`movimiento ${bases.move.name}`);
-                  console.log(respuesta.effect_entries[0].effect);
-                  console.log(`Power ${respuesta.power}`);
-                  console.log(`PP ${respuesta.pp}`); */
-              
-            
-          
-      /* }
-    )
-  }
-} */
 $("#click").click(guardarPoke);
 verPokemon();
 imprimirPoke();

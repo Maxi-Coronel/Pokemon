@@ -1,0 +1,314 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+:focus {
+  outline: 0; }
+
+ins {
+  text-decoration: none; }
+
+del {
+  text-decoration: line-through; }
+
+/* En el código HTML es necesario añadir cellspacing="0" a la tabla */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* :root {
+    --color-green: #00a878;
+    --color-red: #fe5e41;
+    --color-button: #fdffff;
+    --color-black: #000;
+}
+.switch-button {
+    display: inline-block;
+}
+.switch-button .switch-button__checkbox {
+    display: none;
+}
+.switch-button .switch-button__label {
+    background-color: var(--color-red);
+    width: 5rem;
+    height: 3rem;
+    border-radius: 3rem;
+    display: inline-block;
+    position: relative;
+}
+.switch-button .switch-button__label:before {
+    transition: .2s;
+    display: block;
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-button);
+    content: '';
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 0px 1px var(--color-black);
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label {
+    background-color: var(--color-green);
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label:before {
+    transform: translateX(2rem);
+} */
+.absolute {
+  position: absolute;
+  z-index: 1; }
+
+#desaparece {
+  background-color: black; }
+
+body {
+  font: 16px Arial; }
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block; }
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px; }
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%; }
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff; }
+
+.autocomplete-items {
+  overflow-y: scroll;
+  max-height: 150px;
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0; }
+
+.autocomplete-items li {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4; }
+
+.autocomplete-items li:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9; }
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff; }
+
+.footer {
+  background: linear-gradient(to bottom, #000000, #74a5ba);
+  padding-bottom: 3%; }
+  .footer .footer__ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px; }
+    .footer .footer__ul img {
+      margin: 10px;
+      padding: 5px;
+      width: 3.5em; }
+  .footer .footer__p {
+    color: #fffb00;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 5px #1100ff;
+    align-items: center;
+    align-self: end; }
+  .footer .container {
+    display: flex;
+    width: 100%;
+    padding-top: 3%; }
+    .footer .container form {
+      width: 65%;
+      color: white; }
+      .footer .container form div {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; }
+    .footer .container .riolu {
+      width: 40%;
+      max-width: 250px;
+      max-height: 250px;
+      margin: 0 auto auto; }
+
+@media only screen and (max-width: 590px) {
+  .footer .container form {
+    width: 100%; }
+  .footer .container .riolu {
+    display: none; } }
+
+body main .form-check {
+  margin-bottom: 0;
+  color: white; }
+
+body main .light {
+  background-color: rgba(255, 235, 205, 0.904); }
+
+body main .dark {
+  background-color: black; }
+
+body main .grid {
+  display: grid;
+  grid-template-columns: 20% 60% 20%; }
+  body main .grid .two {
+    grid-column: 1;
+    padding: 30px;
+    font-size: larger;
+    color: whitesmoke; }
+    body main .grid .two .circulo {
+      border: 5px solid white;
+      border-radius: 50%; }
+  body main .grid .one {
+    grid-column: 2;
+    color: whitesmoke;
+    font-size: 45px;
+    text-align: center; }
+    body main .grid .one .circulo {
+      border: 5px solid white;
+      border-radius: 50%; }
+    body main .grid .one #agregar .esqDerecha {
+      float: right;
+      height: 40px; }
+    body main .grid .one #fondo {
+      margin: 40px 18%; }
+    body main .grid .one div .border-radius {
+      max-width: 100%;
+      border-radius: 4px; }
+    body main .grid .one div option {
+      font-size: 60%;
+      text-align: center; }
+    body main .grid .one #caracteristicas {
+      width: 50%;
+      margin: 3% auto;
+      background-color: #30a8d7a1;
+      border-radius: 4px;
+      padding: 15px; }
+      body main .grid .one #caracteristicas ul {
+        display: flex;
+        justify-content: space-around;
+        font-size: 25px;
+        margin: 0 0 15px 0;
+        min-width: 50%; }
+        body main .grid .one #caracteristicas ul li {
+          width: 40%;
+          margin: 0 auto;
+          text-align: center; }
+      body main .grid .one #caracteristicas div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        font-size: 25px; }
+        body main .grid .one #caracteristicas div ul {
+          display: block;
+          margin: 0; }
+          body main .grid .one #caracteristicas div ul li {
+            width: 100%; }
+  body main .grid .three {
+    grid-column: 3;
+    padding: 30px;
+    font-size: larger;
+    color: whitesmoke; }
+    body main .grid .three .circulo {
+      border: 5px solid white;
+      border-radius: 50%; }
+
+body main #btn {
+  color: white; }
+  body main #btn .flex {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0; }
+    body main #btn .flex .row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 10px;
+      padding: 0; }
+      body main #btn .flex .row .borrar {
+        display: block;
+        width: 15%; }
+      body main #btn .flex .row .esqDerecha {
+        float: right;
+        height: 40px; }
+      body main #btn .flex .row .card {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 9px 7px 0;
+        border: 7px solid rgba(238, 255, 0, 0.808);
+        border-radius: 3px;
+        background-color: rgba(0, 31, 170, 0.808);
+        width: auto; }
+        body main #btn .flex .row .card .imgComp {
+          border: 3px solid gray;
+          border-radius: 3px;
+          padding: 0 18px;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover; }
+      body main #btn .flex .row .card:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 15px #ffffff; }
+      body main #btn .flex .row .flex {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0; }
+
+@media only screen and (max-width: 850px) {
+  body main .grid .one #caracteristicas {
+    width: 100%; } }
+
+@media only screen and (max-width: 550px) {
+  body main .grid .one #caracteristicas ul {
+    flex-direction: column; }
+    body main .grid .one #caracteristicas ul li {
+      width: 100%; } }
