@@ -13,17 +13,15 @@
 </head>
 <body>
     <header>
-        <button class="btn btn-primary absolute">+</button>
-        <div id="desaparece">
-            <img src="./Multimedia/Img/portada2.jpg" class="w-100" alt="...">
-        </div>
-        <div id="aparece" style="display: none;">
-            <img src="./Multimedia/Img/portada1.jpg" class="d-block w-100" alt="...">
-        </div>
+        <img id="aparece" src="./Multimedia/Img/portada1.jpg" class="w-100" alt="Absol dark">
     </header>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a href="./index.html" class="navbar-brand">Pokedex</a>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"><img src="./Multimedia/Img/luna.png" alt="" width="35px" style="background-color: white; border-radius: 50%;"></label>
+            </div>
             <form autocomplete="off" class="d-flex">
                 <div class="autocomplete">
                     <input id="buscador" class="form-control me-2" type="search" placeholder="Por Nombre" aria-label="Search">
@@ -32,15 +30,11 @@
             </form>
         </div>
     </nav>
-    <main>
-        <div class="form-check form-switch dark">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Dark mode</label>
-        </div>
-        <div class="grid dark">
+    <main class="light">
+        <div class="grid">
             <section class="two">
                 <div class="anterior">
-                    <div id="fAnt" class="circulo">
+                    <div id="fAnt" class="circulo--white">
                         <a class="aAnt" href="#">
                             <img id="ant" class="img img-fluid" alt="pokemon anterior">
                         </a>
@@ -51,7 +45,7 @@
                 <div id="agregar">
                     <input type="button" class="button btn btn-primary esqDerecha" value="+">
                 </div>
-                <div id="fondo" class="circulo">
+                <div id="fondo" class="circulo--white">
                     <img id="img" class="img img-fluid" alt="pokemon buscado">
                 </div>
                 <div>
@@ -63,7 +57,7 @@
             </section>
             <section class="three">
                 <div class="siguiente">
-                    <div id="fSig" class="circulo">
+                    <div id="fSig" class="circulo--white">
                         <a class="aSig" href="#">
                             <img id="sig" class="img img-fluid" alt="pokemon siguiente">
                         </a>
@@ -75,7 +69,7 @@
             <div id="comparador" class="flex"></div>
         </div>
     </main>
-    <footer class="footer">
+    <footer>
         <div>
             <ul class="footer__ul">
                 <li><a href="#"><img src="./Multimedia/Img/iconos/logo-de-face.png" alt="red social"></a></li>

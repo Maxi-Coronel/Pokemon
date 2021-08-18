@@ -6,11 +6,74 @@
 //eventos---------------------------------
 //logica----------------------------------
 
-//========== CAMBIAR IMG DEL HEADER ============
-$(".absolute").click(()=>{
-  $("#desaparece").toggle();
-  $("#aparece").toggle();
-})
+//======================== OBJETOS ========================
+function InfoPoke(id, name, img, type, typeUrl, stat, ability, especie) {
+  this.id = id;
+  this.name = name;
+  this.img = img;  
+  this.type = type;
+  this.typeUrl = typeUrl;
+  this.stat = stat;
+  this.ability = ability;
+  this.especie = especie;
+}
+
+function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
+  this.HP = HP;
+  this.Attack = Attack;
+  this.Defense = Defense;  
+  this.SpAttack = SpAttack;
+  this.SpDefense = SpDefense;
+  this.Speed = Speed;
+}
+
+//======================== VARIABLES ========================
+//-------- arrays -----------
+const miEquipo = [];
+
+
+//funciones-------------------------------
+
+function verCheck() {
+  if ($(`#flexSwitchCheckDefault`).prop(`checked`)) {
+      let val = true;
+      $("nav").removeClass("navbar-light");
+      $("nav").removeClass("bg-light");
+      $("nav").addClass("navbar-dark");
+      $("nav").addClass("bg-dark");
+      $("main").removeClass("light");
+      $("main").addClass("dark");
+      $("#fSig").removeClass("circulo--black");
+      $("#fSig").addClass("circulo--white");
+      $("#fAnt").removeClass("circulo--black");
+      $("#fAnt").addClass("circulo--white");
+      $("#fondo").removeClass("circulo--black");
+      $("#fondo").addClass("circulo--white");
+      $("footer").removeClass("footer--ligth");
+      $("footer").addClass("footer--black");
+      $("#aparece").attr("src", "./Multimedia/Img/portada22.jpg");
+      sessionStorage.setItem('valor', val);
+  } else {
+      let val = false;
+      $("nav").removeClass("navbar-dark");
+      $("nav").removeClass("bg-dark");
+      $("nav").addClass("navbar-light");
+      $("nav").addClass("bg-light");
+      $("main").removeClass("dark");
+      $("main").addClass("light");
+      $("#fSig").removeClass("circulo--white");
+      $("#fSig").addClass("circulo--black");
+      $("#fAnt").removeClass("circulo--white");
+      $("#fAnt").addClass("circulo--black");
+      $("#fondo").removeClass("circulo--white");
+      $("#fondo").addClass("circulo--black");
+      $("footer").removeClass("footer--black");
+      $("footer").addClass("footer--ligth");
+      $("#aparece").attr("src", "./Multimedia/Img/portada1.jpg");
+      sessionStorage.setItem('valor', val);
+  }
+}
+
 
 function guardarPoke () {
   let poke = $(`#buscador`).val();
@@ -25,73 +88,10 @@ $(`#variantes`).change(function () {
   location.reload()
 });
 
-function MaysPrimera(string){
+function maysPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const miEquipo = [];
-
-function InfoPoke(id, name, img, type, stat, ability) {
-  this.id = id;
-  this.name = name;
-  this.img = img;  
-  this.type = type;
-  this.stat = stat;
-  this.ability = ability;
-}
-
-function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
-  this.HP = HP;
-  this.Attack = Attack;
-  this.Defense = Defense;  
-  this.SpAttack = SpAttack;
-  this.SpDefense = SpDefense;
-  this.Speed = Speed;
-}
-
-function antSig(id) {
-  let urlAnt;
-  let urlSig;
-  if (id == 1) {
-    urlAnt = `https://pokeapi.co/api/v2/pokemon/898`;
-  }else {
-    urlAnt = `https://pokeapi.co/api/v2/pokemon/${id-1}`;
-  }
-  $.get(urlAnt,
-    function (respuesta, estado) {
-      if (estado === "success") {
-        console.log(respuesta);
-        $(".aAnt").attr('marcador', `${respuesta.id}`)
-        $("#fAnt").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
-        if (respuesta.sprites.other[`official-artwork`].front_default != null) {
-          $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
-        } else {
-          $("#ant").attr('src', `${respuesta.sprites.front_default}`);
-          $("#ant").attr('width', `500px`);
-        };
-      }
-    }
-  );
-  if (id == 898) {
-    urlSig = `https://pokeapi.co/api/v2/pokemon/1`
-  } else {
-    urlSig = `https://pokeapi.co/api/v2/pokemon/${id+1}`
-  }
-  $.get(urlSig,
-    function (respuesta, estado) {
-      if (estado === "success") {
-        $(".aSig").attr('marcador', `${respuesta.id}`)
-        $("#fSig").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
-        if (respuesta.sprites.other[`official-artwork`].front_default != null) {
-          $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
-        } else {
-          $("#sig").attr('src', `${respuesta.sprites.front_default}`);
-          $("#sig").attr('width', `500px`);
-        };
-      }
-    }
-  );
-}
 
 function buscaAnt() {
   let poke = $(`.aAnt`).attr('marcador');
@@ -107,17 +107,16 @@ function buscaSig() {
   location.reload();
 }
 
-//========== VISTA ============
-function verPokemon(){
+function crearPokemon() {
   //========== TRAER DE SESIONSTORAGE ============
   let pokeBuscado = sessionStorage.getItem('pokeBuscado');
   if (pokeBuscado != null) {
     //=================== crear clase para el pokeBuscado y guardarlo en un array, en localStorage ====================
-    $.get(`https://pokeapi.co/api/v2/pokemon/${pokeBuscado}`,
-      function (respuesta, estado) {
+    let urlPoke = `https://pokeapi.co/api/v2/pokemon/${pokeBuscado}`
+    $.get(urlPoke, function (respuesta, estado) {
         if (estado === "success") {
           let id = respuesta.id;
-          let name = MaysPrimera(respuesta.name);
+          let name = maysPrimera(respuesta.name);
           let img;
           if (respuesta.sprites.other[`official-artwork`].front_default != null) {
             img = respuesta.sprites.other[`official-artwork`][`front_default`];
@@ -126,6 +125,15 @@ function verPokemon(){
             $("#img").attr('width', `500px`);
           };
           let type = respuesta.types;
+          let typeUrl = []
+          if (respuesta.types[1] != null) {
+            let url1 = respuesta.types[0].type.url
+            let url2 = respuesta.types[1].type.url
+            typeUrl =[url1, url2]
+          }else{
+            let url1 = respuesta.types[0].type.url
+            typeUrl = [url1]
+          }
           const base = new Base(
             respuesta.stats[0].base_stat,
             respuesta.stats[1].base_stat,
@@ -134,167 +142,198 @@ function verPokemon(){
             respuesta.stats[4].base_stat,
             respuesta.stats[5].base_stat);
           let ability = respuesta.abilities;
+          let especie = respuesta.species.url;
           let move = respuesta.moves;
 
-          const pokemon = new InfoPoke(id, name, img, type, base, ability);
-
-          $(".button").attr('marcador', `${pokemon.id}`);
-
-          $("#img").attr('src', `${pokemon.img}`);
-
-          let url = respuesta.species.url;
-          $.get(url,
-            function (respuesta, estado) {
-              if (estado === "success") {
-                for (let i = 0; i < respuesta.varieties.length; i++) {
-                  $("#variantes").append(
-                    `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
-                  );
-                }
-              }
-            }
-          )
-
-          $("#caracteristicas").append(
-            `<ul>
-              <li>${pokemon.name}</li>
-              <li>N°: ${pokemon.id}</li>
-            </ul>
-            <div>
-              <ul>
-                <li>HP: ${pokemon.stat.HP}</li>
-                <li>Attack: ${pokemon.stat.Attack}</li>
-                <li>Defense: ${pokemon.stat.Defense}</li>
-              </ul>
-              <ul>
-                <li>Sp. Attack: ${pokemon.stat.SpAttack}</li>
-                <li>Sp. Defense: ${pokemon.stat.SpDefense}</li>
-                <li>Speed: ${pokemon.stat.Speed}</li>
-              </ul>
-            </div>`);
-          $("#caracteristicas").prop('class','border-radius color');
-          $("#fondo").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${pokemon.type[0].type.name}.png")`);
+          const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
+          verPokemon(pokemon)
           
-          localStorage.setItem(`pokemon`, JSON.stringify(pokemon));
-          antSig(pokemon.id);
-
-
-          $.get(respuesta.types[0].type.url,
-            function (respuesta, estado) {
-              if (estado === "success") {
-                console.log(`debilidad doble de ${type[0].type.name}`);
-                let daño = respuesta.damage_relations.double_damage_from
-                for (let i = 0; i < daño.length; i++) {
-                  if (type[1] != null) {
-                    if (daño[i].name != type[1].type.name) {
-                      console.log(daño[i].name);
-                    }
-                  }else{
-                    console.log(daño[i].name);
-                  }
-                }
-              }
-            }
-          )
-          if (respuesta.types[1] != null) {
-            $.get(respuesta.types[1].type.url,
-              function (respuesta, estado) {
-                if (estado === "success") {
-                  console.log(`debilidad doble de ${type[1].type.name}`);
-                  let daño = respuesta.damage_relations.double_damage_from
-                  for (let i = 0; i < daño.length; i++) {
-                    if (daño[i].name != type[0].type.name) {
-                      console.log(daño[i].name);
-                    }
-                  }
-                }
-              }
-            )
-          }
+          sessionStorage.setItem('poke', JSON.stringify(pokemon));
         }
-      }
-    )
-
-
-  }else {
-    //========== SI NO HAY SESIONSTORAGE ============
-    $.get(`https://pokeapi.co/api/v2/pokemon/150`,
-      function (respuesta, estado) {
+    })
+  }else{
+    let urlPoke = `https://pokeapi.co/api/v2/pokemon/150`
+    $.get(urlPoke, function (respuesta, estado) {
         if (estado === "success") {
-        $(".button").attr('marcador', `${respuesta.id}`);
-        $("#ID").html(`<p>ID: #${respuesta.id}</p>`);
-        $("#nombre").html(`<p>${MaysPrimera(respuesta.name)}</p>`);
-        $("#img").attr('src', `${respuesta.sprites.other[`official-artwork`][`front_default`]}`);
-        let url = respuesta.species.url;
-        $.get(url,
-          function (respuesta, estado) {
-            if (estado === "success") {
-              for (let i = 0; i < respuesta.varieties.length; i++) {
-                $("#variantes").append(
-                  `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
-                );
-              }
-            }
+          let id = respuesta.id;
+          let name = maysPrimera(respuesta.name);
+          let img;
+          if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+            img = respuesta.sprites.other[`official-artwork`][`front_default`];
+          } else {
+            img = respuesta.sprites.front_default;
+            $("#img").attr('width', `500px`);
+          };
+          let type = respuesta.types;
+          let typeUrl = []
+          if (respuesta.types[1] != null) {
+            let url1 = respuesta.types[0].type.url
+            let url2 = respuesta.types[1].type.url
+            typeUrl =[url1, url2]
+          }else{
+            let url1 = respuesta.types[0].type.url
+            typeUrl = [url1]
           }
-        )
-        $("#caracteristicas").append(
-          `<ul>
-              <li>${MaysPrimera(respuesta.name)}</li>
-              <li>N°: ${respuesta.id}</li>
-            </ul>
-            <div>
-              <ul>
-                <li>HP: ${respuesta.stats[0].base_stat}</li>
-                <li>Attack: ${respuesta.stats[1].base_stat}</li>
-                <li>Defense: ${respuesta.stats[2].base_stat}</li>
-              </ul>
-              <ul>
-                <li>Sp. Attack: ${respuesta.stats[3].base_stat}</li>
-                <li>Sp. Defense: ${respuesta.stats[4].base_stat}</li>
-                <li>Speed: ${respuesta.stats[5].base_stat}</li>
-              </ul>
-            </div>`);
-        $("#caracteristicas").prop('class','listNotStyle');
-        $("#fondo").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
-        
-        const base = new Base(
-          respuesta.stats[0].base_stat,
-          respuesta.stats[1].base_stat,
-          respuesta.stats[2].base_stat,
-          respuesta.stats[3].base_stat,
-          respuesta.stats[4].base_stat,
-          respuesta.stats[5].base_stat);
-        
-        const pokemon = new InfoPoke(
-          respuesta.id,
-          respuesta.name,
-          respuesta.sprites.other[`official-artwork`][`front_default`],
-          respuesta.types,
-          base,
-          respuesta.abilities);
+          const base = new Base(
+            respuesta.stats[0].base_stat,
+            respuesta.stats[1].base_stat,
+            respuesta.stats[2].base_stat,
+            respuesta.stats[3].base_stat,
+            respuesta.stats[4].base_stat,
+            respuesta.stats[5].base_stat);
+          let ability = respuesta.abilities;
+          let especie = respuesta.species.url;
+          let move = respuesta.moves;
 
-        localStorage.setItem(`pokemon`, JSON.stringify(pokemon));
-        
-        antSig(respuesta.id);
+          const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
+          verPokemon(pokemon)
+          
+          sessionStorage.setItem('poke', JSON.stringify(pokemon));
         }
-      }
-    )
+    })
   }
 }
 
-function anyadirPoke(evento) {
+function verPokemon(evento){
+
+  $(".button").attr('marcador', `${evento.id}`);
+  $("#img").attr(`src`, `${evento.img}`);
+
+  let url = evento.especie;
+  $.get(url, function (respuesta, estado) {
+    if (estado === "success") {
+      for (let i = 0; i < respuesta.varieties.length; i++) {
+        $("#variantes").append(
+          `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
+        );
+      }
+    }
+  })
+
+          //---------------- JS PURO ----------------
+  let dato = document.createElement(`ul`);
+  let nombre = document.createElement(`li`);
+  let contNombre = document.createTextNode(`${evento.name}`);
+  let numero = document.createElement(`li`);
+  let contNumero = document.createTextNode(`N°: ${evento.id}`);
+
+  dato.appendChild(nombre);
+  nombre.appendChild(contNombre);
+  dato.appendChild(numero);
+  numero.appendChild(contNumero);
+
+  let contenedor = document.createElement(`div`);
+  let priDatos = document.createElement(`ul`);
+  let hp = document.createElement(`li`);
+  let contHp = document.createTextNode(`HP: ${evento.stat.HP}`);
+  let attack = document.createElement(`li`);
+  let contAttack = document.createTextNode(`Attack: ${evento.stat.Attack}`);
+  let defense = document.createElement(`li`)
+  let contDefense = document.createTextNode(`Defense: ${evento.stat.Defense}`);
+  let segDatos = document.createElement(`ul`);
+  let speed = document.createElement(`li`);
+  let contSpeed = document.createTextNode(`Speed: ${evento.stat.Speed}`);
+  let spAttack = document.createElement(`li`);
+  let contSpAttack = document.createTextNode(`SpDefense: ${evento.stat.SpDefense}`);
+  let spDefense = document.createElement(`li`);
+  let contSpDefense = document.createTextNode(`SpAttack: ${evento.stat.SpAttack}`);
+
+  contenedor.appendChild(priDatos);
+  priDatos.appendChild(hp);
+  hp.appendChild(contHp);
+  priDatos.appendChild(attack);
+  attack.appendChild(contAttack);
+  priDatos.appendChild(defense);
+  defense.appendChild(contDefense);
+  contenedor.appendChild(segDatos);
+  segDatos.appendChild(speed);
+  speed.appendChild(contSpeed);
+  segDatos.appendChild(spAttack);
+  spAttack.appendChild(contSpAttack);
+  segDatos.appendChild(spDefense);
+  spDefense.appendChild(contSpDefense);
+
+  $("#caracteristicas").append(dato, contenedor);
+  $("#caracteristicas").addClass('border-radius');
+  $("#caracteristicas").addClass('color');
+  $("#fondo").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${evento.type[0].type.name}.png")`);
+  
+  antSig(evento.id);
+
+  for (let i = 0; i < evento.typeUrl.length; i++) {
+    $.get(evento.typeUrl[i], function (respuesta, estado) {
+      if (estado === "success") {
+        console.log(`debilidad doble de ${evento.type[i].type.name}`);
+        let daño = respuesta.damage_relations.double_damage_from
+        for (let i = 0; i < daño.length; i++) {
+          if (evento.type[1] != null) {
+            if (daño[i].name != evento.type[1].type.name) {
+              console.log(daño[i].name);
+            }
+          }else{
+            console.log(daño[i].name);
+          }
+        }
+      }
+    })
+  }
+}
+
+function antSig(id) {
+  let urlAnt;
+  if (id == 1) {
+    urlAnt = `https://pokeapi.co/api/v2/pokemon/898`;
+  }else {
+    urlAnt = `https://pokeapi.co/api/v2/pokemon/${id-1}`;
+  }
+  $.get(urlAnt,
+    function (respuesta, estado) {
+      if (estado === "success") {
+        $(".aAnt").attr('marcador', `${respuesta.id}`)
+        $("#fAnt").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
+        if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+          $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+        } else {
+          $("#ant").attr('src', `${respuesta.sprites.front_default}`);
+          $("#ant").attr('width', `500px`);
+        };
+      }
+    }
+  );
+
+  let urlSig;
+  if (id == 898) {
+    urlSig = `https://pokeapi.co/api/v2/pokemon/1`
+  } else {
+    urlSig = `https://pokeapi.co/api/v2/pokemon/${id+1}`
+  }
+  $.get(urlSig, function (respuesta, estado) {
+    if (estado === "success") {
+      $(".aSig").attr('marcador', `${respuesta.id}`)
+      $("#fSig").css(`background-image`, `url("./Multimedia/Img/Fondo/fondo-${respuesta.types[0].type.name}.png")`);
+      if (respuesta.sprites.other[`official-artwork`].front_default != null) {
+        $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+      } else {
+        $("#sig").attr('src', `${respuesta.sprites.front_default}`);
+        $("#sig").attr('width', `500px`);
+      };
+    }
+  });
+}
+
+function anyadirPoke() {
   //llamamos al storage
   let compVacio = JSON.parse(localStorage.getItem(`miEquipo`));
   //condicional de storage
   if (localStorage.getItem(`miEquipo`) != null) {
-    const nuevo = JSON.parse(localStorage.getItem(`pokemon`));
+    const nuevo = JSON.parse(sessionStorage.getItem(`poke`));
     compVacio.push(nuevo);
     localStorage.setItem(`miEquipo`, JSON.stringify(compVacio));
   }else {
-    const nuevo = JSON.parse(localStorage.getItem(`pokemon`));
+    const nuevo = JSON.parse(sessionStorage.getItem(`poke`));
     miEquipo.push(nuevo);
     localStorage.setItem(`miEquipo`, JSON.stringify(miEquipo));
-  }  
+  }
   location.reload();
 }
 
@@ -319,47 +358,128 @@ function imprimirPoke() {
         type.a = e.type[0].type.name;
         type.b = e.type[1].type.name;
       }
+            //---------------- JS PURO ----------------
+      let comparador = document.createElement(`div`);
+      comparador.classList.add(`row`)
+
+      let input = document.createElement(`input`);
+      input.setAttribute(`type`, `button`);
+      input.classList.add(`borrar`);
+      input.classList.add(`btn`);
+      input.classList.add(`btn-danger`);
+      input.setAttribute(`value`, `x`);
+      input.setAttribute(`marcador`, `${e.id}`);      
+      comparador.appendChild(input);
+
+      let card = document.createElement(`div`);
+      card.classList.add(`card`);
+      card.classList.add(`flex`);
+      comparador.appendChild(card);
+
+      let arriba = document.createElement(`ul`);
+      arriba.classList.add(`flex`);
+      card.appendChild(arriba);
+
+      let nombre = document.createElement(`li`);
+      let strong1 = document.createElement(`strong`);
+      let contenido1 = document.createTextNode(`${e.name}`);
       
+      let salud = document.createElement(`li`);
+      let strong2 = document.createElement(`strong`);
+      let span1 = document.createElement(`span`);
+      let contenido3 = document.createTextNode(`HP`);
+      let contenido2 = document.createTextNode(`${e.stat.HP}`);
+
+      arriba.appendChild(nombre);
+      nombre.appendChild(strong1);
+      strong1.appendChild(contenido1);
+
+      arriba.appendChild(salud);
+      salud.appendChild(strong2);
+      strong2.appendChild(span1);
+      span1.appendChild(contenido3);
+      strong2.appendChild(contenido2);
       
-        $(`#comparador`).append(`
-          <div class="row">
-            <input type="button" class="borrar btn btn-danger esqDerecha" value="x" marcador="${e.id}">
-            <div class="card flex">
-              <ul class="flex between">
-                <li><strong>${e.name}</strong></li>
-                <li><strong><span>HP</span>${e.stat.HP}</strong></li>
-              </ul>
-              <ul>
-                <li><img class="imgComp" src="${e.img}" style='background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")' width="200px"></li>
-                <li>Tipo: <img src="./Multimedia/Img/Tipo/${type.a}.png" alt=""> <img src="./Multimedia/Img/Tipo/${type.b}.png" alt=""></li>
-                <li>Ataque: ${e.stat.Attack}</li>
-                <li>Defensa: ${e.stat.Defense}</li>
-                <li>Super ataque: ${e.stat.SpAttack}</li>
-                <li>Super defensa: ${e.stat.SpDefense}</li>
-                <li>Velocidad: ${e.stat.Speed}</li>
-              </ul>
-            </div>
-          </div>
-        `);
+      let abajo = document.createElement(`ul`);
+      card.appendChild(abajo);
+
+      let liImg = document.createElement(`li`);
+      let imgPrincipal = document.createElement(`img`);
+      imgPrincipal.classList.add(`imgComp`);
+      imgPrincipal.setAttribute(`src`, `${e.img}`);
+      imgPrincipal.setAttribute(`style`, `background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")`);
+      imgPrincipal.setAttribute(`alt`, `Carta ${e.name}`);
+
+      let liTipo = document.createElement(`li`);
+      let imgTipo1 = document.createElement(`img`);
+      imgTipo1.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.a}.png`)
+      let imgTipo2 = document.createElement(`img`);
+      imgTipo2.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.b}.png`)
+      imgTipo2.setAttribute(`alt`, ``)
+      let contTipo = document.createTextNode(`Tipo: `);
+
+      let liAtaque = document.createElement(`li`);
+      let contAtaque = document.createTextNode(`Ataque: ${e.stat.Attack}`);
+
+      let liDefensa = document.createElement(`li`);
+      let contDefensa = document.createTextNode(`Defensa: ${e.stat.Defense}`);
+
+      let liSpAttack = document.createElement(`li`);
+      let contSpAttack = document.createTextNode(`Super ataque: ${e.stat.SpAttack}`);
+
+      let liSpDefense = document.createElement(`li`);
+      let contSpDefense = document.createTextNode(`Super defensa: ${e.stat.SpDefense}`);
+
+      let liSpeed = document.createElement(`li`);
+      let contSpeed = document.createTextNode(`Velocidad: ${e.stat.Speed}`);
+
+      abajo.appendChild(liImg);
+      liImg.appendChild(imgPrincipal);
+      abajo.appendChild(liTipo);
+      liTipo.appendChild(contTipo);
+      liTipo.appendChild(imgTipo1);
+      liTipo.appendChild(imgTipo2);
+      abajo.appendChild(liAtaque);
+      liAtaque.appendChild(contAtaque);
+      abajo.appendChild(liDefensa);
+      liDefensa.appendChild(contDefensa);
+      abajo.appendChild(liSpAttack);
+      liSpAttack.appendChild(contSpAttack);
+      abajo.appendChild(liSpDefense);
+      liSpDefense.appendChild(contSpDefense);
+      abajo.appendChild(liSpeed);
+      liSpeed.appendChild(contSpeed);
+
+      $(`#comparador`).append(comparador);
     });
   }
 }
 
-function borrarPoke(evento) {
+function borraPoke(evento) {
   //========== TRAER DE LOCALSTORAGE ============
-  let borrar = JSON.parse(localStorage.getItem(`miEquipo`));
+  let borra = JSON.parse(localStorage.getItem(`miEquipo`));
   //========== FILTRAR TODOS MENOS EL BORRADO ============
-  let actualizado = borrar.filter(e => e.id != evento.target.getAttribute('marcador'));
+  let actualizado = borra.filter(e => e.id != evento.target.getAttribute('marcador'));
   //========== VOLVER A GUARDAR EN LOCALSTORAGE ============
   localStorage.setItem(`miEquipo`, JSON.stringify(actualizado));
   location.reload();
 }
 
-$("#click").click(guardarPoke);
-verPokemon();
+
+
+//logica----------------------------------
+
+let session = JSON.parse(sessionStorage.getItem("valor"));
+$(`#flexSwitchCheckDefault`).prop(`checked`, session);
+verCheck();
+crearPokemon();
 imprimirPoke();
+
+//eventos---------------------------------
+
+$("#click").click(guardarPoke);
 $(`.button`).click(anyadirPoke);
-$(`.borrar`).click(borrarPoke);
+$(`.borrar`).click(borraPoke);
 $(`.aAnt`).click(buscaAnt);
 $(`.aSig`).click(buscaSig);
-
+$(`#flexSwitchCheckDefault`).click(verCheck);

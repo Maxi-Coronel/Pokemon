@@ -85,12 +85,15 @@ table {
 .switch-button .switch-button__checkbox:checked + .switch-button__label:before {
     transform: translateX(2rem);
 } */
-.absolute {
-  position: absolute;
-  z-index: 1; }
-
-#desaparece {
-  background-color: black; }
+@media only screen and (max-width: 550px) {
+  body nav div {
+    margin: 0 auto; }
+    body nav div a {
+      display: none; }
+    body nav div form {
+      width: 70%; }
+      body nav div form div input {
+        width: 85%; } }
 
 body {
   font: 16px Arial; }
@@ -142,77 +145,93 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff; }
 
-.footer {
-  background: linear-gradient(to bottom, #000000, #74a5ba);
+.footer--ligth {
+  background: linear-gradient(to bottom, #c9c9c9, #74a5ba); }
+
+.footer--black {
+  background: linear-gradient(to bottom, #000000, #74a5ba); }
+
+footer {
   padding-bottom: 3%; }
-  .footer .footer__ul {
+  footer .footer__ul {
     display: flex;
     justify-content: center;
     padding-top: 20px; }
-    .footer .footer__ul img {
+    footer .footer__ul img {
       margin: 10px;
       padding: 5px;
       width: 3.5em; }
-  .footer .footer__p {
+  footer .footer__p {
     color: #fffb00;
     font-size: 40px;
     text-align: center;
     text-shadow: 1px 1px 5px #1100ff;
     align-items: center;
     align-self: end; }
-  .footer .container {
+  footer .container {
     display: flex;
     width: 100%;
     padding-top: 3%; }
-    .footer .container form {
+    footer .container form {
       width: 65%;
       color: white; }
-      .footer .container form div {
+      footer .container form div {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center; }
-    .footer .container .riolu {
+        align-items: center;
+        justify-content: center; }
+        footer .container form div button {
+          margin: auto; }
+    footer .container .riolu {
       width: 40%;
       max-width: 250px;
       max-height: 250px;
       margin: 0 auto auto; }
 
-@media only screen and (max-width: 590px) {
-  .footer .container form {
+@media only screen and (max-width: 490px) {
+  footer .container form {
     width: 100%; }
-  .footer .container .riolu {
+  footer .container .riolu {
     display: none; } }
+
+body .light {
+  background-color: #c9c9c9;
+  color: black; }
+
+body .dark {
+  background-color: black;
+  color: white; }
 
 body main .form-check {
   margin-bottom: 0;
   color: white; }
-
-body main .light {
-  background-color: rgba(255, 235, 205, 0.904); }
-
-body main .dark {
-  background-color: black; }
 
 body main .grid {
   display: grid;
   grid-template-columns: 20% 60% 20%; }
   body main .grid .two {
     grid-column: 1;
-    padding: 30px;
+    padding: 10%;
     font-size: larger;
     color: whitesmoke; }
-    body main .grid .two .circulo {
+    body main .grid .two .circulo--white {
       border: 5px solid white;
+      border-radius: 50%; }
+    body main .grid .two .circulo--black {
+      border: 5px solid #4b48ff;
       border-radius: 50%; }
   body main .grid .one {
     grid-column: 2;
     color: whitesmoke;
     font-size: 45px;
     text-align: center; }
-    body main .grid .one .circulo {
+    body main .grid .one .circulo--white {
       border: 5px solid white;
+      border-radius: 50%; }
+    body main .grid .one .circulo--black {
+      border: 5px solid #4b48ff;
       border-radius: 50%; }
     body main .grid .one #agregar .esqDerecha {
       float: right;
@@ -253,62 +272,85 @@ body main .grid {
             width: 100%; }
   body main .grid .three {
     grid-column: 3;
-    padding: 30px;
+    padding: 10%;
     font-size: larger;
     color: whitesmoke; }
-    body main .grid .three .circulo {
+    body main .grid .three .circulo--white {
       border: 5px solid white;
       border-radius: 50%; }
+    body main .grid .three .circulo--black {
+      border: 5px solid #4b48ff;
+      border-radius: 50%; }
 
-body main #btn {
-  color: white; }
-  body main #btn .flex {
+body main #btn .flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0; }
+  body main #btn .flex .row {
     display: flex;
-    flex-wrap: wrap;
-    margin: 0; }
-    body main #btn .flex .row {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    padding: 0; }
+    body main #btn .flex .row .borrar {
+      display: block;
+      width: 15%; }
+    body main #btn .flex .row .esqDerecha {
+      float: right;
+      height: 40px; }
+    body main #btn .flex .row .card {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 10px;
-      padding: 0; }
-      body main #btn .flex .row .borrar {
-        display: block;
-        width: 15%; }
-      body main #btn .flex .row .esqDerecha {
-        float: right;
-        height: 40px; }
-      body main #btn .flex .row .card {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0;
-        padding: 9px 7px 0;
-        border: 7px solid rgba(238, 255, 0, 0.808);
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 9px 7px 0;
+      border: 7px solid rgba(238, 255, 0, 0.808);
+      border-radius: 3px;
+      background-color: rgba(0, 31, 170, 0.808);
+      width: auto; }
+      body main #btn .flex .row .card .imgComp {
+        width: 200px;
+        border: 3px solid gray;
         border-radius: 3px;
-        background-color: rgba(0, 31, 170, 0.808);
-        width: auto; }
-        body main #btn .flex .row .card .imgComp {
-          border: 3px solid gray;
-          border-radius: 3px;
-          padding: 0 18px;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-size: cover; }
-      body main #btn .flex .row .card:hover {
-        transform: scale(1.1);
-        box-shadow: 0px 0px 15px #ffffff; }
-      body main #btn .flex .row .flex {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin: 0; }
+        padding: 0 18px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover; }
+    body main #btn .flex .row .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 15px #ffffff; }
+    body main #btn .flex .row .flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0; }
 
 @media only screen and (max-width: 850px) {
+  body main .grid .two {
+    padding: 7%;
+    border: 3px; }
+    body main .grid .two .circulo--white {
+      border: 3px solid white; }
+    body main .grid .two .circulo--black {
+      border: 3px solid #4b48ff; }
+  body main .grid .one .circulo--white {
+    border: 3px solid white; }
+  body main .grid .one .circulo--black {
+    border: 3px solid #4b48ff; }
+  body main .grid .one #fondo {
+    margin: 25px 9%; }
   body main .grid .one #caracteristicas {
-    width: 100%; } }
+    width: 100%; }
+  body main .grid .three {
+    padding: 7%; }
+    body main .grid .three .circulo--white {
+      border: 3px solid white; }
+    body main .grid .three .circulo--black {
+      border: 3px solid #4b48ff; } }
 
 @media only screen and (max-width: 550px) {
-  body main .grid .one #caracteristicas ul {
-    flex-direction: column; }
-    body main .grid .one #caracteristicas ul li {
-      width: 100%; } }
+  body main .grid {
+    grid-template-columns: 25% 50% 25%; }
+    body main .grid .one #caracteristicas ul {
+      flex-direction: column; }
+      body main .grid .one #caracteristicas ul li {
+        width: 100%; } }
