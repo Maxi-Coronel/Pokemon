@@ -5,7 +5,11 @@
 //funciones-------------------------------
 //eventos---------------------------------
 //logica----------------------------------
-
+$(document).ready(function(){ 
+  $('body').on('click', `.stats` ,function(){
+      $('#prueba').toggle();
+  });
+  });
 //======================== OBJETOS ========================
 function InfoPoke(id, name, img, type, typeUrl, stat, ability, especie) {
   this.id = id;
@@ -33,6 +37,22 @@ const miEquipo = [];
 
 
 //funciones-------------------------------
+/* function primera() {
+  $(".grid").removeClass()
+  for(var i = 0; i < 40; i++) {
+     for(var j = 0; j< 40; j++) {
+        var div = document.createElement("div");
+        div.style.width = "25px";
+        div.style.height = "25px";
+        div.style.border = "1px solid black";
+      }
+      var jump = document.createElement("br");
+      document.getElementById("container").appendChild(jump);
+      document.getElementById("container").appendChild(div); }
+}
+
+primera() */
+
 
 function verCheck() {
   if ($(`#flexSwitchCheckDefault`).prop(`checked`)) {
@@ -115,6 +135,14 @@ function crearPokemon() {
     let urlPoke = `https://pokeapi.co/api/v2/pokemon/${pokeBuscado}`
     $.get(urlPoke, function (respuesta, estado) {
         if (estado === "success") {
+          $.get(`https://pokeapi.co/api/v2/pokemon-species/152/`, function (respuesta, estado) {
+            if (estado === "success") {
+              $.get(respuesta.evolution_chain, function (respuesta, estado) {
+            if (estado === "success") {
+              console.log(respuesta);
+            }})
+            }})
+          
           let id = respuesta.id;
           let name = maysPrimera(respuesta.name);
           let img;
@@ -223,6 +251,12 @@ function verPokemon(evento){
   numero.appendChild(contNumero);
 
   let contenedor = document.createElement(`div`);
+  let stats = document.createElement(`button`);
+  stats.classList.add(`stats`);
+  let contStats = document.createTextNode(`Stats`);
+  let div =  document.createElement(`div`);
+  div.setAttribute(`id`, `prueba`);
+  div.setAttribute(`style`, `display: none`);
   let priDatos = document.createElement(`ul`);
   let hp = document.createElement(`li`);
   let contHp = document.createTextNode(`HP: ${evento.stat.HP}`);
@@ -238,14 +272,17 @@ function verPokemon(evento){
   let spDefense = document.createElement(`li`);
   let contSpDefense = document.createTextNode(`SpAttack: ${evento.stat.SpAttack}`);
 
-  contenedor.appendChild(priDatos);
+  contenedor.appendChild(stats);
+  stats.appendChild(contStats);
+  contenedor.appendChild(div);
+  div.appendChild(priDatos);
   priDatos.appendChild(hp);
   hp.appendChild(contHp);
   priDatos.appendChild(attack);
   attack.appendChild(contAttack);
   priDatos.appendChild(defense);
   defense.appendChild(contDefense);
-  contenedor.appendChild(segDatos);
+  div.appendChild(segDatos);
   segDatos.appendChild(speed);
   speed.appendChild(contSpeed);
   segDatos.appendChild(spAttack);
@@ -483,3 +520,5 @@ $(`.borrar`).click(borraPoke);
 $(`.aAnt`).click(buscaAnt);
 $(`.aSig`).click(buscaSig);
 $(`#flexSwitchCheckDefault`).click(verCheck);
+/* $(`#stats`).click(function(){$(`#prueba`).toggle()}); */
+

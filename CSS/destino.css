@@ -260,15 +260,15 @@ body main .grid {
           width: 40%;
           margin: 0 auto;
           text-align: center; }
-      body main .grid .one #caracteristicas div {
+      body main .grid .one #caracteristicas div div {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         font-size: 25px; }
-        body main .grid .one #caracteristicas div ul {
+        body main .grid .one #caracteristicas div div ul {
           display: block;
           margin: 0; }
-          body main .grid .one #caracteristicas div ul li {
+          body main .grid .one #caracteristicas div div ul li {
             width: 100%; }
   body main .grid .three {
     grid-column: 3;
