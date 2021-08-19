@@ -204,6 +204,12 @@ body .dark {
   background-color: black;
   color: white; }
 
+#pruebaEvolve {
+  display: block; }
+
+.fSig {
+  background-image: url("../Multimedia/Img/random_bg.png"); }
+
 body main .form-check {
   margin-bottom: 0;
   color: white; }
@@ -249,7 +255,8 @@ body main .grid {
       margin: 3% auto;
       background-color: #30a8d7a1;
       border-radius: 4px;
-      padding: 15px; }
+      padding: 15px;
+      backdrop-filter: blur(5px); }
       body main .grid .one #caracteristicas ul {
         display: flex;
         justify-content: space-around;
@@ -260,6 +267,17 @@ body main .grid {
           width: 40%;
           margin: 0 auto;
           text-align: center; }
+      body main .grid .one #caracteristicas div button {
+        display: flex;
+        justify-content: center;
+        margin: 10px auto;
+        padding: 2% 5%;
+        border-radius: 10%;
+        border-color: #5757e4;
+        border-bottom-color: white;
+        font-size: 30px;
+        background-color: #5757e4;
+        color: white; }
       body main .grid .one #caracteristicas div div {
         display: flex;
         flex-wrap: wrap;
@@ -270,6 +288,21 @@ body main .grid {
           margin: 0; }
           body main .grid .one #caracteristicas div div ul li {
             width: 100%; }
+      body main .grid .one #caracteristicas div #pruebaEvolve {
+        display: flex;
+        justify-content: space-around;
+        font-size: 25px; }
+        body main .grid .one #caracteristicas div #pruebaEvolve ul {
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+          margin: 0; }
+          body main .grid .one #caracteristicas div #pruebaEvolve ul li {
+            display: flex;
+            width: 33%; }
+            body main .grid .one #caracteristicas div #pruebaEvolve ul li div a img {
+              width: 100%;
+              padding: 10%; }
   body main .grid .three {
     grid-column: 3;
     padding: 10%;
