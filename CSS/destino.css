@@ -382,8 +382,12 @@ body main #btn .flex {
 
 @media only screen and (max-width: 550px) {
   body main .grid {
-    grid-template-columns: 25% 50% 25%; }
+    grid-template-columns: 20% 60% 20%; }
     body main .grid .one #caracteristicas ul {
       flex-direction: column; }
       body main .grid .one #caracteristicas ul li {
-        width: 100%; } }
+        width: 100%; }
+    body main .grid .one #caracteristicas div button {
+      font-size: 19px; }
+    body main .grid .one #caracteristicas div #pruebaEvolve ul {
+      flex-direction: row; } }

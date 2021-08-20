@@ -141,6 +141,7 @@ function crearPokemon() {
         let urlPoke = `https://pokeapi.co/api/v2/pokemon/${pokeBuscado}`
         $.get(urlPoke, function(respuesta, estado) {
             if (estado === "success") {
+                
                 let id = respuesta.id;
                 let name = maysPrimera(respuesta.name);
                 let img;
@@ -414,43 +415,43 @@ function verPokemon(evento) {
                                     }
                                 })
                             }
-                        }
-                        if (respuesta.chain.evolves_to[0].evolves_to[0] != null) {
-
-                            for (let i = 0; i < respuesta.chain.evolves_to[0].evolves_to.length; i++) {
-
-                                let segEvolve = document.createElement(`li`);
-                                let divSeg = document.createElement(`div`);
-                                let aSeg = document.createElement(`a`);
-                                let imgSeg = document.createElement(`img`);
-
-                                listEvolve.appendChild(segEvolve);
-                                segEvolve.appendChild(divSeg);
-                                divSeg.appendChild(aSeg);
-                                aSeg.classList.add(`fSig`);
-                                aSeg.classList.add(`circulo--black`);
-                                aSeg.setAttribute(`href`, `#`);
-                                aSeg.classList.add(`aSig`);
-                                aSeg.appendChild(imgSeg);
-                                imgSeg.classList.add(`evoluciones`)
-
-                                let name = respuesta.chain.evolves_to[0].evolves_to[i].species.name;
-
-                                if (name == `darmanitan`) {
-                                    name = `${name}-standard`
-                                }else if (name == `meowstic`) {
-                                    name = `${name}-male`
-                                }
-
-                                let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
-                                $.get(url, function(respuesta, estado) {
-                                    if (estado === "success") {
-                                        let img = respuesta.sprites.other[`official-artwork`][`front_default`]
-                                        imgSeg.setAttribute(`src`, `${img}`);
-                                        aSeg.setAttribute('marcador', `${respuesta.id}`);
-                                        aSeg.setAttribute(`id`, `n${respuesta.id}`);
+                            if (respuesta.chain.evolves_to[0].evolves_to[0] != null) {
+    
+                                for (let i = 0; i < respuesta.chain.evolves_to[0].evolves_to.length; i++) {
+    
+                                    let segEvolve = document.createElement(`li`);
+                                    let divSeg = document.createElement(`div`);
+                                    let aSeg = document.createElement(`a`);
+                                    let imgSeg = document.createElement(`img`);
+    
+                                    listEvolve.appendChild(segEvolve);
+                                    segEvolve.appendChild(divSeg);
+                                    divSeg.appendChild(aSeg);
+                                    aSeg.classList.add(`fSig`);
+                                    aSeg.classList.add(`circulo--black`);
+                                    aSeg.setAttribute(`href`, `#`);
+                                    aSeg.classList.add(`aSig`);
+                                    aSeg.appendChild(imgSeg);
+                                    imgSeg.classList.add(`evoluciones`)
+    
+                                    let name = respuesta.chain.evolves_to[0].evolves_to[i].species.name;
+    
+                                    if (name == `darmanitan`) {
+                                        name = `${name}-standard`
+                                    }else if (name == `meowstic`) {
+                                        name = `${name}-male`
                                     }
-                                })
+    
+                                    let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+                                    $.get(url, function(respuesta, estado) {
+                                        if (estado === "success") {
+                                            let img = respuesta.sprites.other[`official-artwork`][`front_default`]
+                                            imgSeg.setAttribute(`src`, `${img}`);
+                                            aSeg.setAttribute('marcador', `${respuesta.id}`);
+                                            aSeg.setAttribute(`id`, `n${respuesta.id}`);
+                                        }
+                                    })
+                                }
                             }
                         }
                     }
