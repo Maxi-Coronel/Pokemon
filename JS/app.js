@@ -141,7 +141,7 @@ function crearPokemon() {
         let urlPoke = `https://pokeapi.co/api/v2/pokemon/${pokeBuscado}`
         $.get(urlPoke, function(respuesta, estado) {
             if (estado === "success") {
-                
+
                 let id = respuesta.id;
                 let name = maysPrimera(respuesta.name);
                 let img;
@@ -173,6 +173,7 @@ function crearPokemon() {
                 let move = respuesta.moves;
 
                 const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
+                sessionStorage.setItem(`poke`, JSON.stringify(pokemon));
                 verPokemon(pokemon)
             }
         })
@@ -211,6 +212,7 @@ function crearPokemon() {
                 let move = respuesta.moves;
 
                 const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
+                sessionStorage.setItem(`poke`, JSON.stringify(pokemon));
                 verPokemon(pokemon)
             }
         })
