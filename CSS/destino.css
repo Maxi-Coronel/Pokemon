@@ -389,5 +389,9 @@ body main #btn .flex {
         width: 100%; }
     body main .grid .one #caracteristicas div button {
       font-size: 19px; }
+    body main .grid .one #caracteristicas div div ul li {
+      font-size: 16px; }
+    body main .grid .one #caracteristicas div div p {
+      font-size: 16px; }
     body main .grid .one #caracteristicas div #pruebaEvolve ul {
       flex-direction: row; } }
