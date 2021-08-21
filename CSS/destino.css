@@ -208,11 +208,13 @@ footer {
     #container .generation ul li {
       display: flex;
       width: 16.5%; }
-      #container .generation ul li div a {
-        width: 100%; }
-        #container .generation ul li div a img {
-          width: 100%;
-          padding: 10%; }
+      #container .generation ul li div {
+        display: flex; }
+        #container .generation ul li div a {
+          width: 100%; }
+          #container .generation ul li div a img {
+            width: 100%;
+            padding: 10%; }
 
 .btn-outline-success {
   background-color: DodgerBlue;

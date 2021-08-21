@@ -278,14 +278,6 @@ function verCheck() {
     }
 }
 
-/* function guardarPoke() {
-    let pokeBuscado = $(`#buscador`).val();
-    //========== GUARDAR EN SESIONSTORAGE ============
-    console.log(pokeBuscado);
-    location.reload()
-    sessionStorage.setItem('pokeBuscado', pokeBuscado);
-} */
-
 $(`#variantes`).change(function() {
     let variante = $('#variantes').val();
     if (variante != `variante`) {
@@ -862,7 +854,6 @@ $(`#tipos`).blur(function () {
     $(`#tipos`).attr(`size`,1)});
 $(`#tipos`).change(type);
 $(`#generacion`).change(generation);
-/* $("#click").click(guardarPoke); */
 $(`.button`).click(anyadirEquipo);
 $(`.borrar`).click(borraPoke);
 $(`#flexSwitchCheckDefault`).click(verCheck);
