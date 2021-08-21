@@ -364,10 +364,12 @@ body main #btn .flex {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 10px;
-    padding: 0; }
+    margin: 0;
+    padding: 5px;
+    background-color: transparent; }
     body main #btn .flex .row .borrar {
-      display: block;
+      display: flex;
+      justify-content: center;
       width: 15%; }
     body main #btn .flex .row .esqDerecha {
       float: right;
@@ -376,20 +378,24 @@ body main #btn .flex {
       display: flex;
       flex-wrap: wrap;
       margin: 0;
-      padding: 9px 7px 0;
-      border: 7px solid rgba(238, 255, 0, 0.808);
-      border-radius: 3px;
-      background-color: rgba(0, 31, 170, 0.808);
+      border: 0;
+      background-color: transparent;
       width: auto; }
-      body main #btn .flex .row .card .imgComp {
-        width: 200px;
-        border: 3px solid gray;
-        border-radius: 3px;
-        padding: 0 18px;
-        background-position: center center;
+      body main #btn .flex .row .card ul {
+        background-image: url(../Multimedia/Img/style_pokemon_bg.png);
         background-repeat: no-repeat;
-        background-size: cover; }
-    body main #btn .flex .row .card:hover {
+        background-position: center;
+        background-size: contain;
+        padding: 10px 0;
+        border-radius: 90px 90px 3% 3%; }
+        body main #btn .flex .row .card ul li {
+          text-align: center;
+          padding: 0 10px; }
+        body main #btn .flex .row .card ul .imgComp {
+          width: 140px;
+          border-radius: 50%;
+          margin: 8px; }
+    body main #btn .flex .row ul:hover {
       transform: scale(1.1);
       box-shadow: 0px 0px 15px #ffffff; }
     body main #btn .flex .row .flex {
@@ -419,7 +425,37 @@ body main #btn .flex {
     body main .grid .three .circulo--white {
       border: 3px solid white; }
     body main .grid .three .circulo--black {
-      border: 3px solid #4b48ff; } }
+      border: 3px solid #4b48ff; }
+  body main #btn .flex {
+    justify-content: space-around; }
+    body main #btn .flex .row .card {
+      padding: 0;
+      margin: auto; }
+      body main #btn .flex .row .card ul {
+        background-image: url(../Multimedia/Img/style_pokemon_bg.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        padding: 10px 0;
+        border-radius: 90px 90px 3% 3%; }
+        body main #btn .flex .row .card ul li {
+          text-align: center;
+          padding: 0 25px;
+          font-size: 13px; }
+          body main #btn .flex .row .card ul li img {
+            width: 14px; }
+        body main #btn .flex .row .card ul .imgComp {
+          width: 120px;
+          border-radius: 50%;
+          margin: 5px 0; }
+    body main #btn .flex .row ul:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 15px #ffffff; }
+    body main #btn .flex .row .flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0; } }
 
 @media only screen and (max-width: 550px) {
   body main .grid {

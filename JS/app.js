@@ -747,40 +747,15 @@ function imprimirCard() {
       card.classList.add(`card`);
       card.classList.add(`flex`);
       comparador.appendChild(card);
-
-      let arriba = document.createElement(`ul`);
-      arriba.classList.add(`flex`);
-      card.appendChild(arriba);
-
-      let nombre = document.createElement(`li`);
-      let strong1 = document.createElement(`strong`);
-      let contenido1 = document.createTextNode(`${e.name}`);
-      
-      let salud = document.createElement(`li`);
-      let strong2 = document.createElement(`strong`);
-      let span1 = document.createElement(`span`);
-      let contenido3 = document.createTextNode(`HP`);
-      let contenido2 = document.createTextNode(`${e.stat.HP}`);
-
-      arriba.appendChild(nombre);
-      nombre.appendChild(strong1);
-      strong1.appendChild(contenido1);
-
-      arriba.appendChild(salud);
-      salud.appendChild(strong2);
-      strong2.appendChild(span1);
-      span1.appendChild(contenido3);
-      strong2.appendChild(contenido2);
       
       let abajo = document.createElement(`ul`);
       card.appendChild(abajo);
 
       let liImg = document.createElement(`li`);
-      let imagenncipal = document.createElement(`img`);
-      imagenncipal.classList.add(`imgComp`);
-      imagenncipal.setAttribute(`src`, `${e.img}`);
-      imagenncipal.setAttribute(`style`, `background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")`);
-      imagenncipal.setAttribute(`alt`, `Carta ${e.name}`);
+      let imagenPoke = document.createElement(`img`);
+      imagenPoke.classList.add(`imgComp`);
+      imagenPoke.setAttribute(`src`, `${e.img}`);
+      imagenPoke.setAttribute(`alt`, `Carta ${e.name}`);
 
       let liTipo = document.createElement(`li`);
       let imgTipo1 = document.createElement(`img`);
@@ -789,6 +764,9 @@ function imprimirCard() {
       imgTipo2.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.b}.png`)
       imgTipo2.setAttribute(`alt`, ``)
       let contTipo = document.createTextNode(`Tipo: `);
+
+      let liSalud = document.createElement(`li`);
+      let contSalud = document.createTextNode(`HP: ${e.stat.HP}`);
 
       let liAtaque = document.createElement(`li`);
       let contAtaque = document.createTextNode(`Ataque: ${e.stat.Attack}`);
@@ -806,11 +784,14 @@ function imprimirCard() {
       let contSpeed = document.createTextNode(`Velocidad: ${e.stat.Speed}`);
 
       abajo.appendChild(liImg);
-      liImg.appendChild(imagenncipal);
+      liImg.appendChild(imagenPoke);
       abajo.appendChild(liTipo);
       liTipo.appendChild(contTipo);
       liTipo.appendChild(imgTipo1);
       liTipo.appendChild(imgTipo2);
+
+      abajo.appendChild(liSalud);
+      liSalud.appendChild(contSalud);
       abajo.appendChild(liAtaque);
       liAtaque.appendChild(contAtaque);
       abajo.appendChild(liDefensa);
@@ -822,7 +803,7 @@ function imprimirCard() {
       abajo.appendChild(liSpeed);
       liSpeed.appendChild(contSpeed);
 
-      $(`#comparador`).append(comparador);
+      $(`#cards`).append(comparador);
     });
   }
 }
