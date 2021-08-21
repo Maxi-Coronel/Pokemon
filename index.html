@@ -22,7 +22,17 @@
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"><img src="./Multimedia/Img/luna.png" alt="" width="35px" style="background-color: white; border-radius: 50%;"></label>
             </div>
-            <form autocomplete="off" class="d-flex">
+            <select name="generacion" id="generacion">
+                <option value="">generación</option>
+                <option value="generation-i">generación 1</option>
+                <option value="generation-ii">generación 2</option>
+                <option value="generation-iii">generación 3</option>
+                <option value="generation-iv">generación 4</option>
+                <option value="generation-v">generación 5</option>
+                <option value="generation-vi">generación 6</option>
+                <option value="generation-vii">generación 7</option>
+                <option value="generation-viii">generación 8</option>
+            </select>
                 <div class="autocomplete">
                     <input id="buscador" class="form-control me-2" type="search" placeholder="Por Nombre" aria-label="Search">
                 </div>
@@ -49,9 +59,7 @@
                     <img id="img" class="img img-fluid" alt="pokemon buscado">
                 </div>
                 <div>
-                    <select class="border-radius" name="variantes" id="variantes">
-                        <option value=""></option>
-                    </select>
+                    <select class="border-radius select" name="variantes" id="variantes"></select>
                 </div>
                 <div id="caracteristicas"></div>
             </section>

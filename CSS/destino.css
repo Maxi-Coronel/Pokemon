@@ -196,6 +196,24 @@ footer {
   footer .container .riolu {
     display: none; } }
 
+#container .generation {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px; }
+  #container .generation ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0; }
+    #container .generation ul li {
+      display: flex;
+      width: 16.5%; }
+      #container .generation ul li div a {
+        width: 100%; }
+        #container .generation ul li div a img {
+          width: 100%;
+          padding: 10%; }
+
 body .light {
   background-color: #c9c9c9;
   color: black; }
@@ -203,6 +221,9 @@ body .light {
 body .dark {
   background-color: black;
   color: white; }
+
+.select {
+  font-size: 35px; }
 
 #pruebaEvolve {
   display: block; }

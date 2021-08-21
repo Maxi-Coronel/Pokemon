@@ -114,3 +114,7 @@ $.get('https://pokeapi.co/api/v2/pokemon?limit=1118',
     $("#click").click(guardarPoke)
   }
 );
+
+function maysPrimera(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

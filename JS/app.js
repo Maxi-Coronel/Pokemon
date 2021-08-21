@@ -45,23 +45,71 @@ function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
 //-------- arrays -----------
 const miEquipo = [];
 
-
 //funciones-------------------------------
-/* function primera() {
-  $(".grid").removeClass()
-  for(var i = 0; i < 40; i++) {
-     for(var j = 0; j< 40; j++) {
-        var div = document.createElement("div");
-        div.style.width = "25px";
-        div.style.height = "25px";
-        div.style.border = "1px solid black";
-      }
-      var jump = document.createElement("br");
-      document.getElementById("container").appendChild(jump);
-      document.getElementById("container").appendChild(div); }
+function generation() {
+    let gen =  $('#generacion').val();
+    $(".grid").remove()
+    $(".generation").remove()
+    $.get(`https://pokeapi.co/api/v2/generation/`, function(respuesta, estado) {
+        if (estado === "success") {
+            for (let i = 0; i < respuesta.results.length; i++) {
+                if (respuesta.results[i].name == gen) {
+                    let url = respuesta.results[i].url
+                    $.get(url, function(respuesta, estado) {
+                        if (estado === "success") {
+
+                            let dato = document.createElement(`div`);
+                            dato.classList.add(`generation`);
+                            let listEvolve = document.createElement(`ul`);
+                            listEvolve.classList.add(`d-flex`);
+
+                            dato.appendChild(listEvolve);
+
+                            let pokemonGeneration = respuesta.pokemon_species;
+                            for (let i = 0; i < pokemonGeneration.length; i++) {
+                                let name = pokemonGeneration[i].url;
+                                
+                                let priEvolve = document.createElement(`li`);
+                                let divPri = document.createElement(`div`);
+                                let aPri = document.createElement(`a`);
+                                let imgPri = document.createElement(`img`);
+
+                                listEvolve.appendChild(priEvolve);
+                                priEvolve.appendChild(divPri);
+                                divPri.appendChild(aPri);
+                                aPri.classList.add(`fSig`);
+                                aPri.classList.add(`circulo--black`);
+                                aPri.setAttribute(`href`, `#`);
+                                aPri.classList.add(`aSig`);
+                                aPri.appendChild(imgPri);
+                                
+                                $.get(name, function(respuesta, estado) {
+                                    if (estado === "success") {
+                                        let id = respuesta.id
+                                        $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
+                                            if (estado === "success") {
+                                                        let img = respuesta.sprites.other[`official-artwork`][`front_default`];
+                                                        imgPri.setAttribute(`src`, `${img}`);
+                                                        imgPri.classList.add(`evoluciones`);
+                                                        aPri.setAttribute('marcador', `${respuesta.id}`);
+                                                        aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                            $(`main`).append(dato);
+                        }
+                    })
+                }
+                
+            }
+            
+        }
+    })
 }
 
-primera() */
+$(`#generacion`).change(generation) 
 
 
 function verCheck() {
@@ -106,27 +154,27 @@ function verCheck() {
 
 
 function guardarPoke() {
-    location.reload()
-    let poke = $(`#buscador`).val();
+    let pokeBuscado = $(`#buscador`).val();
     //========== GUARDAR EN SESIONSTORAGE ============
-    sessionStorage.setItem('pokeBuscado', poke);
+    sessionStorage.setItem('pokeBuscado', pokeBuscado);
+    location.reload()
 }
 
 $(`#variantes`).change(function() {
-    let poke = $('#variantes').val();
-    //========== GUARDAR EN SESIONSTORAGE ============
-    sessionStorage.setItem('pokeBuscado', poke);
-    location.reload()
+    let pokeBuscado = $('#variantes').val();
+    let actual = sessionStorage.getItem(`pokeBuscado`)
+    if (actual != pokeBuscado) {
+        //========== GUARDAR EN SESIONSTORAGE ============
+        sessionStorage.setItem('pokeBuscado', pokeBuscado);
+        location.reload()
+    }
 });
 
-function maysPrimera(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 function traeId(e) {
-    let poke = $(`#${e}`).attr('marcador');
+    let pokeBuscado = $(`#${e}`).attr('marcador');
     //========== GUARDAR EN SESIONSTORAGE ============
-    sessionStorage.setItem('pokeBuscado', poke);
+    sessionStorage.setItem('pokeBuscado', pokeBuscado);
     location.reload()
 }
 
@@ -173,7 +221,7 @@ function crearPokemon() {
                 let move = respuesta.moves;
 
                 const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
-                sessionStorage.setItem(`poke`, JSON.stringify(pokemon));
+                sessionStorage.setItem(`pokemon`, JSON.stringify(pokemon));
                 verPokemon(pokemon)
             }
         })
@@ -212,7 +260,7 @@ function crearPokemon() {
                 let move = respuesta.moves;
 
                 const pokemon = new InfoPoke(id, name, img, type, typeUrl, base, ability, especie);
-                sessionStorage.setItem(`poke`, JSON.stringify(pokemon));
+                sessionStorage.setItem(`pokemon`, JSON.stringify(pokemon));
                 verPokemon(pokemon)
             }
         })
@@ -293,18 +341,22 @@ function verPokemon(evento) {
 
             console.log(respuesta.generation.url);
             console.log(respuesta.generation.name);
-            $.get(`https://pokeapi.co/api/v2/generation/`, function(respuesta, estado) {
-                if (estado === "success") {
-            console.log(respuesta);
-                }
-            }
-            )
+            
 
+            let variante = document.createElement(`option`);
+            let contVariante = document.createTextNode(`variante`);
+
+            variante.appendChild(contVariante);
+            $("#variantes").append(variante);
 
             for (let i = 0; i < respuesta.varieties.length; i++) {
-                $("#variantes").append(
-                    `<option value="${respuesta.varieties[i].pokemon.name}">${respuesta.varieties[i].pokemon.name}</option>`
-                );
+                let specie = document.createElement(`option`);
+                let contSpecie = document.createTextNode(`${respuesta.varieties[i].pokemon.name}`);
+
+                specie.appendChild(contSpecie);
+                specie.setAttribute(`value`, `${respuesta.varieties[i].pokemon.name}`);
+
+                $("#variantes").append(specie);
             }
             //=================== BUSCA DE EVOLUCIONES ====================
             for (let i = 0; i < respuesta.flavor_text_entries.length; i++) {
@@ -357,26 +409,24 @@ function verPokemon(evento) {
                         aPri.classList.add(`aSig`);
                         aPri.appendChild(imgPri);
 
-                        let name = respuesta.chain.species.name;
-                        if (name == `landorus` || name == `thundurus` || name == `tornadus`) {
-                            name = `${name}-incarnate`
-                        }else if (name == `meloetta`){
-                            name = `${name}-aria`
-                        }else if (name == `basculin`) {
-                            name = `${name}-blue-striped`
-                        }else if (name == `keldeo`) {
-                            name = `${name}-resolute`
-                        }
-
-                        let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+                        let url = respuesta.chain.species.url
 
                         $.get(url, function(respuesta, estado) {
                             if (estado === "success") {
-                                let img = respuesta.sprites.other[`official-artwork`][`front_default`]
-                                imgPri.setAttribute(`src`, `${img}`);
-                                imgPri.classList.add(`evoluciones`)
-                                aPri.setAttribute('marcador', `${respuesta.id}`);
-                                aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                let id = respuesta.id
+                                let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+                                $.get(url, function(respuesta, estado) {
+                                    if (estado === "success") {
+                                        let img = respuesta.sprites.other[`official-artwork`][`front_default`]
+                                        imgPri.setAttribute(`src`, `${img}`);
+                                        imgPri.classList.add(`evoluciones`)
+                                        aPri.setAttribute('marcador', `${respuesta.id}`);
+                                        aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                    }
+                                })
+
+
                             }
                         })
 
@@ -399,21 +449,21 @@ function verPokemon(evento) {
                                 aSeg.appendChild(imgSeg);
                                 imgSeg.classList.add(`evoluciones`)
 
-                                let name = respuesta.chain.evolves_to[i].species.name;
+                                let url = respuesta.chain.evolves_to[i].species.url
 
-                                if (name == `darmanitan`) {
-                                    name = `${name}-standard`
-                                }else if (name == `meowstic`) {
-                                    name = `${name}-male`
-                                }
-
-                                let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
                                 $.get(url, function(respuesta, estado) {
                                     if (estado === "success") {
-                                        let img = respuesta.sprites.other[`official-artwork`][`front_default`]
-                                        imgSeg.setAttribute(`src`, `${img}`);
-                                        aSeg.setAttribute('marcador', `${respuesta.id}`);
-                                        aSeg.setAttribute(`id`, `n${respuesta.id}`);
+                                        let id = respuesta.id
+                                        let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+                                        $.get(url, function(respuesta, estado) {
+                                            if (estado === "success") {
+                                                let img = respuesta.sprites.other[`official-artwork`][`front_default`]
+                                                imgSeg.setAttribute(`src`, `${img}`);
+                                                aSeg.setAttribute('marcador', `${respuesta.id}`);
+                                                aSeg.setAttribute(`id`, `n${respuesta.id}`);
+                                            }
+                                        })
                                     }
                                 })
                             }
@@ -436,23 +486,25 @@ function verPokemon(evento) {
                                     aSeg.appendChild(imgSeg);
                                     imgSeg.classList.add(`evoluciones`)
     
-                                    let name = respuesta.chain.evolves_to[0].evolves_to[i].species.name;
-    
-                                    if (name == `darmanitan`) {
-                                        name = `${name}-standard`
-                                    }else if (name == `meowstic`) {
-                                        name = `${name}-male`
+                                    
+
+                                let url = respuesta.chain.evolves_to[0].evolves_to[i].species.url
+
+                                $.get(url, function(respuesta, estado) {
+                                    if (estado === "success") {
+                                        let id = respuesta.id
+                                        let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+                                        $.get(url, function(respuesta, estado) {
+                                            if (estado === "success") {
+                                                let img = respuesta.sprites.other[`official-artwork`][`front_default`]
+                                                imgSeg.setAttribute(`src`, `${img}`);
+                                                aSeg.setAttribute('marcador', `${respuesta.id}`);
+                                                aSeg.setAttribute(`id`, `n${respuesta.id}`);
+                                            }
+                                        })
                                     }
-    
-                                    let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
-                                    $.get(url, function(respuesta, estado) {
-                                        if (estado === "success") {
-                                            let img = respuesta.sprites.other[`official-artwork`][`front_default`]
-                                            imgSeg.setAttribute(`src`, `${img}`);
-                                            aSeg.setAttribute('marcador', `${respuesta.id}`);
-                                            aSeg.setAttribute(`id`, `n${respuesta.id}`);
-                                        }
-                                    })
+                                })
                                 }
                             }
                         }
@@ -529,11 +581,11 @@ function anyadirPoke() {
   let compVacio = JSON.parse(localStorage.getItem(`miEquipo`));
   //condicional de storage
   if (localStorage.getItem(`miEquipo`) != null) {
-    const nuevo = JSON.parse(sessionStorage.getItem(`poke`));
+    const nuevo = JSON.parse(sessionStorage.getItem(`pokemon`));
     compVacio.push(nuevo);
     localStorage.setItem(`miEquipo`, JSON.stringify(compVacio));
   }else {
-    const nuevo = JSON.parse(sessionStorage.getItem(`poke`));
+    const nuevo = JSON.parse(sessionStorage.getItem(`pokemon`));
     miEquipo.push(nuevo);
     localStorage.setItem(`miEquipo`, JSON.stringify(miEquipo));
   }
