@@ -45,12 +45,114 @@ function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
 //-------- arrays -----------
 const miEquipo = [];
 
+
+
+
+function optionType() {
+    let url = `https://pokeapi.co/api/v2/type/`
+    $.get(url, function(respuesta, estado) {
+        if (estado === "success") {
+            
+            let tipo = document.createElement(`option`);
+            let contTipo = document.createTextNode(`tipo`);
+
+            tipo.appendChild(contTipo);
+            $("#tipos").append(tipo);
+
+            for (let i = 0; i < respuesta.results.length; i++) {
+                let tipo = document.createElement(`option`);
+                let contTipo = document.createTextNode(`${respuesta.results[i].name}`);
+
+                tipo.appendChild(contTipo);
+                tipo.setAttribute(`value`, `${respuesta.results[i].name}`);
+
+                $("#tipos").append(tipo);
+            }
+            
+        }
+    })
+}
+
+
+
+
+
 //funciones-------------------------------
-function generation() {
-    let gen =  $('#generacion').val();
+function type() {
+    let tip =  $('#tipos').val();
+    let url = `https://pokeapi.co/api/v2/type/`
     $(".grid").remove()
     $(".generation").remove()
-    $.get(`https://pokeapi.co/api/v2/generation/`, function(respuesta, estado) {
+    $.get(url, function(respuesta, estado) {
+        if (estado === "success") {
+            for (let i = 0; i < respuesta.results.length; i++) {
+                if (respuesta.results[i].name == tip) {
+                    let url = respuesta.results[i].url
+                    $.get(url, function(respuesta, estado) {
+                        if (estado === "success") {
+
+                            let dato = document.createElement(`div`);
+                            dato.classList.add(`generation`);
+                            let listEvolve = document.createElement(`ul`);
+                            listEvolve.classList.add(`d-flex`);
+
+                            dato.appendChild(listEvolve);
+
+                            let pokemonType = respuesta.pokemon;
+                            for (let i = 0; i < pokemonType.length; i++) {
+                                
+                                let priEvolve = document.createElement(`li`);
+                                let divPri = document.createElement(`div`);
+                                let aPri = document.createElement(`a`);
+                                let imgPri = document.createElement(`img`);
+
+                                listEvolve.appendChild(priEvolve);
+                                priEvolve.appendChild(divPri);
+                                divPri.appendChild(aPri);
+                                aPri.classList.add(`fSig`);
+                                aPri.classList.add(`circulo--black`);
+                                aPri.setAttribute(`href`, `#`);
+                                aPri.classList.add(`aSig`);
+                                aPri.appendChild(imgPri);
+
+                                let url = respuesta.pokemon[i].pokemon.url;
+                                
+                                $.get(url, function(respuesta, estado) {
+                                    if (estado === "success") {
+                                        let id = respuesta.id
+                                        if (id <= 898) {
+                                            $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
+                                                if (estado === "success") {
+                                                    let img = respuesta.sprites.other[`official-artwork`][`front_default`];
+                                                    imgPri.setAttribute(`src`, `${img}`);
+                                                    imgPri.classList.add(`evoluciones`);
+                                                    aPri.setAttribute('marcador', `${respuesta.id}`);
+                                                    aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }
+                            $(`main`).append(dato);
+                        }
+                    })
+                }
+                
+            }
+            
+        }
+    })
+}
+
+
+
+function generation() {
+    let gen =  $('#generacion').val();
+    let url = `https://pokeapi.co/api/v2/generation/`
+    $(".grid").remove()
+    $(".generation").remove()
+    $.get(url, function(respuesta, estado) {
         if (estado === "success") {
             for (let i = 0; i < respuesta.results.length; i++) {
                 if (respuesta.results[i].name == gen) {
@@ -88,11 +190,17 @@ function generation() {
                                         let id = respuesta.id
                                         $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
                                             if (estado === "success") {
-                                                        let img = respuesta.sprites.other[`official-artwork`][`front_default`];
-                                                        imgPri.setAttribute(`src`, `${img}`);
-                                                        imgPri.classList.add(`evoluciones`);
-                                                        aPri.setAttribute('marcador', `${respuesta.id}`);
-                                                        aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                                if (id <= 898) {
+                                                    $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
+                                                        if (estado === "success") {
+                                                            let img = respuesta.sprites.other[`official-artwork`][`front_default`];
+                                                            imgPri.setAttribute(`src`, `${img}`);
+                                                            imgPri.classList.add(`evoluciones`);
+                                                            aPri.setAttribute('marcador', `${respuesta.id}`);
+                                                            aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                                        }
+                                                    })
+                                                }
                                             }
                                         })
                                     }
@@ -108,9 +216,6 @@ function generation() {
         }
     })
 }
-
-$(`#generacion`).change(generation) 
-
 
 function verCheck() {
     if ($(`#flexSwitchCheckDefault`).prop(`checked`)) {
@@ -726,12 +831,16 @@ function borraPoke(evento) {
 
 let session = JSON.parse(sessionStorage.getItem("valor"));
 $(`#flexSwitchCheckDefault`).prop(`checked`, session);
+
+optionType();
 verCheck();
 crearPokemon();
 imprimirCard();
 
 //eventos---------------------------------
 
+$(`#tipos`).change(type) 
+$(`#generacion`).change(generation) 
 $("#click").click(guardarPoke);
 $(`.button`).click(anyadirPoke);
 $(`.borrar`).click(borraPoke);
