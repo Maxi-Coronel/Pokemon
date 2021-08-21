@@ -5,21 +5,19 @@
 //funciones-------------------------------
 //eventos---------------------------------
 //logica----------------------------------
-$(document).ready(function() {
-    $('body').on('click', `.stats`, function() {
-        $('#prueba').toggle();
-    });
+
+$('body').on('click', `.stats`, function() {
+    $('#prueba').toggle();
 });
-$(document).ready(function() {
-    $('body').on('click', `.evolve`, function() {
-        $('#pruebaEvolve').toggle();
-    });
+
+$('body').on('click', `.evolve`, function() {
+    $('#pruebaEvolve').toggle();
 });
-$(document).ready(function() {
-    $('body').on('click', `.descripcion`, function() {
-        $('#pruebaDescr').toggle();
-    });
+
+$('body').on('click', `.descripcion`, function() {
+    $('#pruebaDescr').toggle();
 });
+
 //======================== OBJETOS ========================
 function InfoPoke(id, name, img, type, typeUrl, stat, ability, especie) {
     this.id = id;
@@ -45,9 +43,7 @@ function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
 //-------- arrays -----------
 const miEquipo = [];
 
-
-
-
+//======================== FUNCIONES ========================
 function optionType() {
     let url = `https://pokeapi.co/api/v2/type/`
     $.get(url, function(respuesta, estado) {
@@ -73,11 +69,6 @@ function optionType() {
     })
 }
 
-
-
-
-
-//funciones-------------------------------
 function type() {
     let tip =  $('#tipos').val();
     let url = `https://pokeapi.co/api/v2/type/`
@@ -144,8 +135,6 @@ function type() {
         }
     })
 }
-
-
 
 function generation() {
     let gen =  $('#generacion').val();
@@ -219,7 +208,7 @@ function generation() {
 
 function verCheck() {
     if ($(`#flexSwitchCheckDefault`).prop(`checked`)) {
-        let val = true;
+        let modoDark = true;
         $("nav").removeClass("navbar-light");
         $("nav").removeClass("bg-light");
         $("nav").addClass("navbar-dark");
@@ -235,9 +224,9 @@ function verCheck() {
         $("footer").removeClass("footer--ligth");
         $("footer").addClass("footer--black");
         $("#aparece").attr("src", "./Multimedia/Img/portada22.jpg");
-        sessionStorage.setItem('valor', val);
+        sessionStorage.setItem('modoDark', modoDark);
     } else {
-        let val = false;
+        let modoDark = false;
         $("nav").removeClass("navbar-dark");
         $("nav").removeClass("bg-dark");
         $("nav").addClass("navbar-light");
@@ -253,10 +242,9 @@ function verCheck() {
         $("footer").removeClass("footer--black");
         $("footer").addClass("footer--ligth");
         $("#aparece").attr("src", "./Multimedia/Img/portada1.jpg");
-        sessionStorage.setItem('valor', val);
+        sessionStorage.setItem('modoDark', modoDark);
     }
 }
-
 
 function guardarPoke() {
     let pokeBuscado = $(`#buscador`).val();
@@ -266,14 +254,16 @@ function guardarPoke() {
 }
 
 $(`#variantes`).change(function() {
-    let pokeBuscado = $('#variantes').val();
-    let actual = sessionStorage.getItem(`pokeBuscado`)
-    if (actual != pokeBuscado) {
-        //========== GUARDAR EN SESIONSTORAGE ============
-        sessionStorage.setItem('pokeBuscado', pokeBuscado);
-        location.reload()
+    let variante = $('#variantes').val();
+    if (variante != `variante`) {
+        let actual = sessionStorage.getItem(`pokeBuscado`)
+        if (actual != variante) {
+            //========== GUARDAR EN SESIONSTORAGE ============
+            sessionStorage.setItem('pokeBuscado', variante);
+            location.reload()
+        }
     }
-});
+})
 
 
 function traeId(e) {
@@ -438,8 +428,6 @@ function verPokemon(evento) {
     let url = evento.especie;
     $.get(url, function(respuesta, estado) {
         if (estado === "success") {
-
-            //=================== BUSCA DE EVOLUCIONES ====================
             
 
             //=================== BUSCA DE EVOLUCIONES ====================
@@ -615,7 +603,6 @@ function verPokemon(evento) {
                         }
                     }
                 })
-                //=================== BUSCA DE EVOLUCIONES ====================
         }
     })
 
@@ -681,7 +668,7 @@ function antSig(id) {
   });
 }
 
-function anyadirPoke() {
+function anyadirEquipo() {
   //llamamos al storage
   let compVacio = JSON.parse(localStorage.getItem(`miEquipo`));
   //condicional de storage
@@ -825,28 +812,32 @@ function borraPoke(evento) {
   location.reload();
 }
 
-
-
-//logica----------------------------------
-
-let session = JSON.parse(sessionStorage.getItem("valor"));
-$(`#flexSwitchCheckDefault`).prop(`checked`, session);
+//========================================== LOGICA ==========================================
+let modeDark = JSON.parse(sessionStorage.getItem("valor"));
+$(`#flexSwitchCheckDefault`).prop(`checked`, modeDark);
 
 optionType();
 verCheck();
 crearPokemon();
 imprimirCard();
 
-//eventos---------------------------------
-
+//========================================== EVENTOS ==========================================
+$(`#tipos`).focus(function () { 
+    $(`#tipos`).attr(`size`,2.5)});
+$(`#tipos`).change(function () { 
+    $(`#tipos`).attr(`size`,1)});
+$(`#tipos`).blur(function () { 
+    $(`#tipos`).attr(`size`,1)});
 $(`#tipos`).change(type) 
 $(`#generacion`).change(generation) 
+$(`#generacion`).change(generation) 
 $("#click").click(guardarPoke);
-$(`.button`).click(anyadirPoke);
+$(`.button`).click(anyadirEquipo);
 $(`.borrar`).click(borraPoke);
 $(`#flexSwitchCheckDefault`).click(verCheck);
-
-$(`body`).on(`click`, `.aSig` ,function () {
-    let value = this.id
-    traeId(value)
-} );
+$(document).ready(function () {
+    $(`body`).on(`click`, `.aSig` ,function () {
+        let value = this.id
+        traeId(value)
+    } );
+});
