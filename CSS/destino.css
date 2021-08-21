@@ -214,6 +214,24 @@ footer {
           width: 100%;
           padding: 10%; }
 
+.btn-outline-success {
+  background-color: DodgerBlue;
+  color: #fff;
+  border-color: #0061c2; }
+
+.btn-outline-success:active {
+  color: #fff;
+  background-color: #2d1eff;
+  border-color: #070064; }
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.25rem #9c95ff; }
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #2d1eff;
+  border-color: #0f00e0; }
+
 body .light {
   background-color: #c9c9c9;
   color: black; }

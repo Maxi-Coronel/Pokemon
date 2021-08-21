@@ -19,24 +19,28 @@ $('body').on('click', `.descripcion`, function() {
 });
 
 //======================== OBJETOS ========================
-function InfoPoke(id, name, img, type, typeUrl, stat, ability, especie) {
-    this.id = id;
-    this.name = name;
-    this.img = img;
-    this.type = type;
-    this.typeUrl = typeUrl;
-    this.stat = stat;
-    this.ability = ability;
-    this.especie = especie;
+class InfoPoke {
+    constructor(id, name, img, type, typeUrl, stat, ability, especie) {  // Constructor
+        this.id = id;
+        this.name = name;
+        this.img = img;
+        this.type = type;
+        this.typeUrl = typeUrl;
+        this.stat = stat;
+        this.ability = ability;
+        this.especie = especie;
+    }
 }
 
-function Base(HP, Attack, Defense, SpAttack, SpDefense, Speed) {
-    this.HP = HP;
-    this.Attack = Attack;
-    this.Defense = Defense;
-    this.SpAttack = SpAttack;
-    this.SpDefense = SpDefense;
-    this.Speed = Speed;
+class Base {
+    constructor(HP, Attack, Defense, SpAttack, SpDefense, Speed) {  // Constructor
+        this.HP = HP;
+        this.Attack = Attack;
+        this.Defense = Defense;
+        this.SpAttack = SpAttack;
+        this.SpDefense = SpDefense;
+        this.Speed = Speed;
+    }
 }
 
 //======================== VARIABLES ========================
@@ -69,7 +73,34 @@ function optionType() {
     })
 }
 
+function optionGen() {
+    let url = `https://pokeapi.co/api/v2/generation/`
+    $.get(url, function(respuesta, estado) {
+        if (estado === "success") {
+            
+            let generacion = document.createElement(`option`);
+            let contGeneracion = document.createTextNode(`generación`);
+
+            generacion.appendChild(contGeneracion);
+            $("#generacion").append(generacion);
+
+            for (let i = 0; i < respuesta.results.length; i++) {
+                let generacion = document.createElement(`option`);
+                let contGeneracion = document.createTextNode(`${respuesta.results[i].name}`);
+
+                generacion.appendChild(contGeneracion);
+                generacion.setAttribute(`value`, `${respuesta.results[i].name}`);
+
+                $("#generacion").append(generacion);
+            }
+            
+        }
+    })
+}
+
+
 function type() {
+    $(`#tipos`).attr(`size`,1)
     let tip =  $('#tipos').val();
     let url = `https://pokeapi.co/api/v2/type/`
     $(".grid").remove()
@@ -207,6 +238,7 @@ function generation() {
 }
 
 function verCheck() {
+
     if ($(`#flexSwitchCheckDefault`).prop(`checked`)) {
         let modoDark = true;
         $("nav").removeClass("navbar-light");
@@ -246,12 +278,13 @@ function verCheck() {
     }
 }
 
-function guardarPoke() {
+/* function guardarPoke() {
     let pokeBuscado = $(`#buscador`).val();
     //========== GUARDAR EN SESIONSTORAGE ============
-    sessionStorage.setItem('pokeBuscado', pokeBuscado);
+    console.log(pokeBuscado);
     location.reload()
-}
+    sessionStorage.setItem('pokeBuscado', pokeBuscado);
+} */
 
 $(`#variantes`).change(function() {
     let variante = $('#variantes').val();
@@ -813,9 +846,10 @@ function borraPoke(evento) {
 }
 
 //========================================== LOGICA ==========================================
-let modeDark = JSON.parse(sessionStorage.getItem("valor"));
-$(`#flexSwitchCheckDefault`).prop(`checked`, modeDark);
+let modoDark = JSON.parse(sessionStorage.getItem("modoDark"));
+$(`#flexSwitchCheckDefault`).prop(`checked`, modoDark);
 
+optionGen();
 optionType();
 verCheck();
 crearPokemon();
@@ -824,14 +858,11 @@ imprimirCard();
 //========================================== EVENTOS ==========================================
 $(`#tipos`).focus(function () { 
     $(`#tipos`).attr(`size`,2.5)});
-$(`#tipos`).change(function () { 
-    $(`#tipos`).attr(`size`,1)});
 $(`#tipos`).blur(function () { 
     $(`#tipos`).attr(`size`,1)});
-$(`#tipos`).change(type) 
-$(`#generacion`).change(generation) 
-$(`#generacion`).change(generation) 
-$("#click").click(guardarPoke);
+$(`#tipos`).change(type);
+$(`#generacion`).change(generation);
+/* $("#click").click(guardarPoke); */
 $(`.button`).click(anyadirEquipo);
 $(`.borrar`).click(borraPoke);
 $(`#flexSwitchCheckDefault`).click(verCheck);
