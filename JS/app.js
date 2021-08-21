@@ -115,27 +115,27 @@ function type() {
 
                             let dato = document.createElement(`div`);
                             dato.classList.add(`generation`);
-                            let listEvolve = document.createElement(`ul`);
-                            listEvolve.classList.add(`d-flex`);
+                            let listado = document.createElement(`ul`);
+                            listado.classList.add(`d-flex`);
 
-                            dato.appendChild(listEvolve);
+                            dato.appendChild(listado);
 
                             let pokemonType = respuesta.pokemon;
                             for (let i = 0; i < pokemonType.length; i++) {
                                 
-                                let priEvolve = document.createElement(`li`);
-                                let divPri = document.createElement(`div`);
-                                let aPri = document.createElement(`a`);
-                                let imgPri = document.createElement(`img`);
+                                let itemLi = document.createElement(`li`);
+                                let contDiv = document.createElement(`div`);
+                                let enlace = document.createElement(`a`);
+                                let imagen = document.createElement(`img`);
 
-                                listEvolve.appendChild(priEvolve);
-                                priEvolve.appendChild(divPri);
-                                divPri.appendChild(aPri);
-                                aPri.classList.add(`fSig`);
-                                aPri.classList.add(`circulo--black`);
-                                aPri.setAttribute(`href`, `#`);
-                                aPri.classList.add(`aSig`);
-                                aPri.appendChild(imgPri);
+                                listado.appendChild(itemLi);
+                                itemLi.appendChild(contDiv);
+                                contDiv.appendChild(enlace);
+                                enlace.classList.add(`fSig`);
+                                enlace.classList.add(`circulo--black`);
+                                enlace.setAttribute(`href`, `#`);
+                                enlace.classList.add(`aSig`);
+                                enlace.appendChild(imagen);
 
                                 let url = respuesta.pokemon[i].pokemon.url;
                                 
@@ -146,10 +146,10 @@ function type() {
                                             $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
                                                 if (estado === "success") {
                                                     let img = respuesta.sprites.other[`official-artwork`][`front_default`];
-                                                    imgPri.setAttribute(`src`, `${img}`);
-                                                    imgPri.classList.add(`evoluciones`);
-                                                    aPri.setAttribute('marcador', `${respuesta.id}`);
-                                                    aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                                    imagen.setAttribute(`src`, `${img}`);
+                                                    imagen.classList.add(`evoluciones`);
+                                                    enlace.setAttribute('marcador', `${respuesta.id}`);
+                                                    enlace.setAttribute(`id`, `n${respuesta.id}`);
                                                 }
                                             })
                                         }
@@ -182,28 +182,28 @@ function generation() {
 
                             let dato = document.createElement(`div`);
                             dato.classList.add(`generation`);
-                            let listEvolve = document.createElement(`ul`);
-                            listEvolve.classList.add(`d-flex`);
+                            let listado = document.createElement(`ul`);
+                            listado.classList.add(`d-flex`);
 
-                            dato.appendChild(listEvolve);
+                            dato.appendChild(listado);
 
                             let pokemonGeneration = respuesta.pokemon_species;
                             for (let i = 0; i < pokemonGeneration.length; i++) {
                                 let name = pokemonGeneration[i].url;
                                 
-                                let priEvolve = document.createElement(`li`);
-                                let divPri = document.createElement(`div`);
-                                let aPri = document.createElement(`a`);
-                                let imgPri = document.createElement(`img`);
+                                let itemLi = document.createElement(`li`);
+                                let contDiv = document.createElement(`div`);
+                                let enlace = document.createElement(`a`);
+                                let imagen = document.createElement(`img`);
 
-                                listEvolve.appendChild(priEvolve);
-                                priEvolve.appendChild(divPri);
-                                divPri.appendChild(aPri);
-                                aPri.classList.add(`fSig`);
-                                aPri.classList.add(`circulo--black`);
-                                aPri.setAttribute(`href`, `#`);
-                                aPri.classList.add(`aSig`);
-                                aPri.appendChild(imgPri);
+                                listado.appendChild(itemLi);
+                                itemLi.appendChild(contDiv);
+                                contDiv.appendChild(enlace);
+                                enlace.classList.add(`fSig`);
+                                enlace.classList.add(`circulo--black`);
+                                enlace.setAttribute(`href`, `#`);
+                                enlace.classList.add(`aSig`);
+                                enlace.appendChild(imagen);
                                 
                                 $.get(name, function(respuesta, estado) {
                                     if (estado === "success") {
@@ -214,10 +214,10 @@ function generation() {
                                                     $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(respuesta, estado) {
                                                         if (estado === "success") {
                                                             let img = respuesta.sprites.other[`official-artwork`][`front_default`];
-                                                            imgPri.setAttribute(`src`, `${img}`);
-                                                            imgPri.classList.add(`evoluciones`);
-                                                            aPri.setAttribute('marcador', `${respuesta.id}`);
-                                                            aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                                            imagen.setAttribute(`src`, `${img}`);
+                                                            imagen.classList.add(`evoluciones`);
+                                                            enlace.setAttribute('marcador', `${respuesta.id}`);
+                                                            enlace.setAttribute(`id`, `n${respuesta.id}`);
                                                         }
                                                     })
                                                 }
@@ -507,25 +507,25 @@ function verPokemon(evento) {
                         let divEvolve = document.createElement(`div`);
                         divEvolve.setAttribute(`id`, `pruebaEvolve`);
                         divEvolve.setAttribute(`style`, `display: none`);
-                        let listEvolve = document.createElement(`ul`);
-                        listEvolve.classList.add(`d-flex`);
-                        let priEvolve = document.createElement(`li`);
-                        let divPri = document.createElement(`div`);
-                        let aPri = document.createElement(`a`);
-                        let imgPri = document.createElement(`img`);
+                        let listado = document.createElement(`ul`);
+                        listado.classList.add(`d-flex`);
+                        let itemLi = document.createElement(`li`);
+                        let contDiv = document.createElement(`div`);
+                        let enlace = document.createElement(`a`);
+                        let imagen = document.createElement(`img`);
 
                         contenedor.appendChild(evolve);
                         evolve.appendChild(contEvolve);
                         contenedor.appendChild(divEvolve);
-                        divEvolve.appendChild(listEvolve);
-                        listEvolve.appendChild(priEvolve);
-                        priEvolve.appendChild(divPri);
-                        divPri.appendChild(aPri);
-                        aPri.classList.add(`fSig`);
-                        aPri.classList.add(`circulo--black`);
-                        aPri.setAttribute(`href`, `#`);
-                        aPri.classList.add(`aSig`);
-                        aPri.appendChild(imgPri);
+                        divEvolve.appendChild(listado);
+                        listado.appendChild(itemLi);
+                        itemLi.appendChild(contDiv);
+                        contDiv.appendChild(enlace);
+                        enlace.classList.add(`fSig`);
+                        enlace.classList.add(`circulo--black`);
+                        enlace.setAttribute(`href`, `#`);
+                        enlace.classList.add(`aSig`);
+                        enlace.appendChild(imagen);
 
                         let url = respuesta.chain.species.url
 
@@ -537,10 +537,10 @@ function verPokemon(evento) {
                                 $.get(url, function(respuesta, estado) {
                                     if (estado === "success") {
                                         let img = respuesta.sprites.other[`official-artwork`][`front_default`]
-                                        imgPri.setAttribute(`src`, `${img}`);
-                                        imgPri.classList.add(`evoluciones`)
-                                        aPri.setAttribute('marcador', `${respuesta.id}`);
-                                        aPri.setAttribute(`id`, `n${respuesta.id}`);
+                                        imagen.setAttribute(`src`, `${img}`);
+                                        imagen.classList.add(`evoluciones`)
+                                        enlace.setAttribute('marcador', `${respuesta.id}`);
+                                        enlace.setAttribute(`id`, `n${respuesta.id}`);
                                     }
                                 })
 
@@ -557,7 +557,7 @@ function verPokemon(evento) {
                                 let aSeg = document.createElement(`a`);
                                 let imgSeg = document.createElement(`img`);
 
-                                listEvolve.appendChild(segEvolve);
+                                listado.appendChild(segEvolve);
                                 segEvolve.appendChild(divSeg);
                                 divSeg.appendChild(aSeg);
                                 aSeg.classList.add(`fSig`);
@@ -594,7 +594,7 @@ function verPokemon(evento) {
                                     let aSeg = document.createElement(`a`);
                                     let imgSeg = document.createElement(`img`);
     
-                                    listEvolve.appendChild(segEvolve);
+                                    listado.appendChild(segEvolve);
                                     segEvolve.appendChild(divSeg);
                                     divSeg.appendChild(aSeg);
                                     aSeg.classList.add(`fSig`);
@@ -776,11 +776,11 @@ function imprimirCard() {
       card.appendChild(abajo);
 
       let liImg = document.createElement(`li`);
-      let imgPrincipal = document.createElement(`img`);
-      imgPrincipal.classList.add(`imgComp`);
-      imgPrincipal.setAttribute(`src`, `${e.img}`);
-      imgPrincipal.setAttribute(`style`, `background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")`);
-      imgPrincipal.setAttribute(`alt`, `Carta ${e.name}`);
+      let imagenncipal = document.createElement(`img`);
+      imagenncipal.classList.add(`imgComp`);
+      imagenncipal.setAttribute(`src`, `${e.img}`);
+      imagenncipal.setAttribute(`style`, `background-image: url("./Multimedia/Img/Fondo/fondo-${type.a}.png")`);
+      imagenncipal.setAttribute(`alt`, `Carta ${e.name}`);
 
       let liTipo = document.createElement(`li`);
       let imgTipo1 = document.createElement(`img`);
@@ -806,7 +806,7 @@ function imprimirCard() {
       let contSpeed = document.createTextNode(`Velocidad: ${e.stat.Speed}`);
 
       abajo.appendChild(liImg);
-      liImg.appendChild(imgPrincipal);
+      liImg.appendChild(imagenncipal);
       abajo.appendChild(liTipo);
       liTipo.appendChild(contTipo);
       liTipo.appendChild(imgTipo1);
