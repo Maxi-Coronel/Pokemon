@@ -87,10 +87,13 @@ table {
 } */
 @media only screen and (max-width: 550px) {
   body nav div {
-    margin: 0 auto; }
+    display: flex;
+    justify-content: space-around; }
     body nav div a {
-      display: none; }
+      display: none;
+      margin: auto; }
     body nav div form {
+      margin: auto;
       width: 70%; }
       body nav div form div input {
         width: 85%; } }

@@ -35,7 +35,7 @@ $(`#variantes`).change(function() {
         if (actual != variante) {
             //========== GUARDAR EN SESIONSTORAGE ============
             sessionStorage.setItem('pokeBuscado', variante);
-            location.reload()
+            location.reload();
         }
     }
 })
@@ -200,8 +200,8 @@ function verPokemon(evento) {
     let url = evento.especie;
     $.get(url, function(respuesta, estado) {
         if (estado === "success") {
-            //---------------------- busca de variantes ----------------------
 
+            //---------------------- busca de variantes ----------------------
             let variante = document.createElement(`option`);
             let contVariante = document.createTextNode(`variante`);
 
