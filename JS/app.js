@@ -139,6 +139,7 @@ function crearPokemon() {
 function verPokemon(evento) {
     $(".button").attr('marcador', `${evento.id}`);
     $("#img").attr(`src`, `${evento.img}`);
+    $("#img").attr(`alt`, `${evento.img}`);
 
     //---------------- JS PURO ----------------
     let dato = document.createElement(`ul`);
@@ -280,6 +281,7 @@ function verPokemon(evento) {
                                 if (estado === "success") {
                                     let img = respuesta.sprites.other[`official-artwork`][`front_default`]
                                     imagen.setAttribute(`src`, `${img}`);
+                                    imagen.setAttribute(`alt`, `${img}`);
                                     imagen.classList.add(`evoluciones`)
                                     enlace.setAttribute('marcador', `${respuesta.id}`);
                                     enlace.setAttribute(`id`, `n${respuesta.id}`);
@@ -320,6 +322,7 @@ function verPokemon(evento) {
                                         if (estado === "success") {
                                             let img = respuesta.sprites.other[`official-artwork`][`front_default`]
                                             imgSeg.setAttribute(`src`, `${img}`);
+                                            imgSeg.setAttribute(`alt`, `${img}`);
                                             aSeg.setAttribute('marcador', `${respuesta.id}`);
                                             aSeg.setAttribute(`id`, `n${respuesta.id}`);
                                         }
@@ -356,8 +359,9 @@ function verPokemon(evento) {
 
                                         $.get(url, function(respuesta, estado) {
                                             if (estado === "success") {
-                                                let img = respuesta.sprites.other[`official-artwork`][`front_default`]
+                                                let img = respuesta.sprites.other[`official-artwork`][`front_default`];
                                                 imgSeg.setAttribute(`src`, `${img}`);
+                                                imgSeg.setAttribute(`alt`, `${img}`);
                                                 aSeg.setAttribute('marcador', `${respuesta.id}`);
                                                 aSeg.setAttribute(`id`, `n${respuesta.id}`);
                                             }
@@ -387,8 +391,10 @@ function antSig(id) {
                     $("#anterior").attr('marcador', `${respuesta.id}`)
                     if (respuesta.sprites.other[`official-artwork`].front_default != null) {
                         $("#ant").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+                        $("#ant").attr('alt', `${respuesta.sprites.other[`official-artwork`].front_default}`);
           }else {
             $("#ant").attr('src', `${respuesta.sprites.front_default}`);
+            $("#ant").attr('alt', `${respuesta.sprites.front_default}`);
             $("#ant").attr('width', `500px`);
           };
       }
@@ -406,8 +412,10 @@ function antSig(id) {
       $("#siguiente").attr('marcador', `${respuesta.id}`)
       if (respuesta.sprites.other[`official-artwork`].front_default != null) {
         $("#sig").attr('src', `${respuesta.sprites.other[`official-artwork`].front_default}`);
+        $("#sig").attr('alt', `${respuesta.sprites.other[`official-artwork`].front_default}`);
       } else {
         $("#sig").attr('src', `${respuesta.sprites.front_default}`);
+        $("#sig").attr('alt', `${respuesta.sprites.front_default}`);
         $("#sig").attr('width', `500px`);
       };
     }
