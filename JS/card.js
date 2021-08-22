@@ -94,8 +94,10 @@ function imprimirCard() {
         liTipo.appendChild(imgTipo1);
         imgTipo1.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.a}.png`)
         liTipo.appendChild(imgTipo2);
-        imgTipo2.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.b}.png`);
-        imgTipo2.setAttribute(`alt`, ``);
+        if (type.b != `#`) {
+          imgTipo2.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.b}.png`);
+          imgTipo2.setAttribute(`alt`, ``);
+        }
         abajo.appendChild(liSalud);
         liSalud.appendChild(contSalud);
         abajo.appendChild(liAtaque);
