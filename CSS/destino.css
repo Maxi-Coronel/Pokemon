@@ -196,6 +196,9 @@ footer {
   footer .container .riolu {
     display: none; } }
 
+.imgDeb {
+  width: 30px; }
+
 #container .generation {
   display: flex;
   justify-content: space-around;
