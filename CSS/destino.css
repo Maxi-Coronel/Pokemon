@@ -205,6 +205,7 @@ footer {
   font-size: 25px; }
   #container .generation ul {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
     margin: 0; }
@@ -252,7 +253,11 @@ body .dark {
   display: block; }
 
 .fSig {
-  background-image: url("../Multimedia/Img/random_bg.png"); }
+  background-image: url("../Multimedia/Img/random_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: auto; }
 
 body main .form-check {
   margin-bottom: 0;
@@ -408,6 +413,25 @@ body main #btn .flex {
       margin: 0; }
 
 @media only screen and (max-width: 850px) {
+  #container .generation {
+    display: flex;
+    justify-content: space-around;
+    font-size: 25px; }
+    #container .generation ul {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 0; }
+      #container .generation ul li {
+        display: flex;
+        width: 24%; }
+        #container .generation ul li div {
+          display: flex; }
+          #container .generation ul li div a {
+            width: 100%; }
+            #container .generation ul li div a img {
+              width: 100%;
+              padding: 10%; }
   body main .grid .two {
     padding: 7%;
     border: 3px; }
