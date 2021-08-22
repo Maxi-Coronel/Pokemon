@@ -85,7 +85,7 @@ table {
 .switch-button .switch-button__checkbox:checked + .switch-button__label:before {
     transform: translateX(2rem);
 } */
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 721px) {
   body nav div {
     display: flex;
     justify-content: space-around; }
@@ -202,7 +202,7 @@ footer {
 .imgDeb {
   width: 30px; }
 
-.form-check-label {
+.form-check-label img {
   background-color: white;
   border-radius: 50%; }
 
