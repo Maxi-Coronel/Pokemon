@@ -61,7 +61,10 @@ function imprimirCard() {
   
         let liTipo = document.createElement(`li`);
         let imgTipo1 = document.createElement(`img`);
-        let imgTipo2 = document.createElement(`img`);
+        let imgTipo2;
+        if (type.b != `#`) {
+          imgTipo2 = document.createElement(`img`);
+        }
         let contTipo = document.createTextNode(`Tipo: `);
   
         let liSalud = document.createElement(`li`);
@@ -93,10 +96,11 @@ function imprimirCard() {
         liTipo.appendChild(contTipo);
         liTipo.appendChild(imgTipo1);
         imgTipo1.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.a}.png`)
-        liTipo.appendChild(imgTipo2);
+        imgTipo1.setAttribute(`alt`, `Tipo: ${type.a}`)
         if (type.b != `#`) {
+          liTipo.appendChild(imgTipo2);
           imgTipo2.setAttribute(`src`, `./Multimedia/Img/Tipo/${type.b}.png`);
-          imgTipo2.setAttribute(`alt`, ``);
+          imgTipo2.setAttribute(`alt`, `Tipo: ${type.b}`);
         }
         abajo.appendChild(liSalud);
         liSalud.appendChild(contSalud);
