@@ -202,6 +202,10 @@ footer {
 .imgDeb {
   width: 30px; }
 
+.form-check-label {
+  background-color: white;
+  border-radius: 50%; }
+
 #container .generation {
   display: flex;
   justify-content: space-around;
@@ -307,8 +311,7 @@ body main .grid {
       margin: 3% auto;
       background-color: #30a8d7a1;
       border-radius: 4px;
-      padding: 15px;
-      backdrop-filter: blur(5px); }
+      padding: 15px; }
       body main .grid .one #caracteristicas ul {
         display: flex;
         justify-content: space-around;
